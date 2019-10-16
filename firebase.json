@@ -4,6 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "predeploy": ["npm --prefix public run build"],
     "public": "public/dist/CMS4Partners",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
