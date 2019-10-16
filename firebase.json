@@ -4,12 +4,8 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "public/dist",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "public": "public/dist/CMS4Partners",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
