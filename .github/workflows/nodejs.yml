@@ -11,7 +11,11 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: Install Dependencies
+      - name: Install Dependencies Functions
+        run: npm --prefix functions install
+      - name: Test
+        run: npm --prefix functions run test
+      - name: Install Dependencies Front
         run: npm --prefix public install
       - name: Test
         run: npm --prefix public run test
