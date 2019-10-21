@@ -1,0 +1,26 @@
+<table
+  class="table is-striped is-bordered is-fullwidth
+"
+>
+  <thead>
+    <tr>
+      <th>Partner</th>
+      <th>Sponsoring</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let partner of partners | async">
+      <th>{{ partner.name }}</th>
+      <td>
+        {{ partner.sponsoring }}
+      </td>
+      <td>
+        <a class="button" [href]="'/#/admin/partner/' + partner.id">
+          Modifier
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
