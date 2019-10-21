@@ -13,18 +13,7 @@ export class FormComponent implements OnInit {
   readOnly: boolean = false;
 
   @Input()
-  company: Observable<Company> = of({
-    name: "",
-    address: "",
-    zipCode: "",
-    city: "",
-    siret: "",
-    representant: "",
-    email: "",
-    role: "",
-    sponsoring: "",
-    lang: ""
-  });
+  company: Observable<Company>;
 
   companyProfile: FormGroup;
 
@@ -32,6 +21,18 @@ export class FormComponent implements OnInit {
   public submitEvent = new EventEmitter<Company>();
 
   ngOnInit() {
+    this.initFormGroup({
+      name: "",
+      address: "",
+      zipCode: "",
+      city: "",
+      siret: "",
+      representant: "",
+      email: "",
+      role: "",
+      sponsoring: "",
+      lang: ""
+    });
     this.company.subscribe(c => {
       this.initFormGroup(c);
     });

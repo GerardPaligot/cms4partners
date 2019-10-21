@@ -15,7 +15,8 @@ const routes: Routes = [
   {
     path: "admin",
     loadChildren: "src/app/admin/admin.module#AdminModule",
-    ...canActivate(redirectUnauthorizedToLogin)
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
   }
 ];
 

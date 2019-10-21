@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
-import { auth } from "firebase";
+import { auth, app } from "firebase";
 
 @Component({
   selector: "app-root",
@@ -9,10 +9,18 @@ import { auth } from "firebase";
 })
 export class AppComponent {
   title = "CMS4Partners";
-  constructor(public afAuth: AngularFireAuth) {}
+  isLoggedIn: boolean = false;
+  constructor(public afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe(authState => {
+      this.isLoggedIn = authState && authState.email.endsWith("@gdglille.org");
+    });
+  }
   login() {
     this.afAuth.auth.signInWithPopup(
       new auth.GoogleAuthProvider().setCustomParameters({ hd: "gdglille.org" })
     );
+  }
+  logout() {
+    this.afAuth.auth.signOut();
   }
 }
