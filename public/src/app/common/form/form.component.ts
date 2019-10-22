@@ -1,16 +1,16 @@
-import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Company } from "../partner.service";
-import { Observable, of } from "rxjs";
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Company } from '../partner.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
-  selector: "app-form",
-  templateUrl: "./form.component.html",
-  styleUrls: ["./form.component.scss"]
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
   @Input()
-  readOnly: boolean = false;
+  readOnly = false;
 
   @Input()
   company: Observable<Company>;
@@ -22,16 +22,16 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.initFormGroup({
-      name: "",
-      address: "",
-      zipCode: "",
-      city: "",
-      siret: "",
-      representant: "",
-      email: "",
-      role: "",
-      sponsoring: "",
-      lang: ""
+      name: '',
+      address: '',
+      zipCode: '',
+      city: '',
+      siret: '',
+      representant: '',
+      email: '',
+      role: '',
+      sponsoring: '',
+      lang: ''
     });
     this.company.subscribe(c => {
       this.initFormGroup(c);
