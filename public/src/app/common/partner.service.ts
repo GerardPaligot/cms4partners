@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument, DocumentData } from '@angular/fire/firestore';
+=======
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
+>>>>>>> test: use jest for test 🃏
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 export interface Company {
