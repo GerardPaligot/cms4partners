@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   AngularFirestoreCollection,
   AngularFirestore,
   AngularFirestoreDocument,
   DocumentData
-} from "@angular/fire/firestore";
-import { Observable, from } from "rxjs";
-import { map } from "rxjs/operators";
+} from '@angular/fire/firestore';
+import { Observable, from } from 'rxjs';
+import { map } from 'rxjs/operators';
 export interface Company {
   id?: string;
   name: string;
@@ -22,12 +22,12 @@ export interface Company {
 }
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class PartnerService {
   companiesCollectionRef: AngularFirestoreCollection<Company>;
   constructor(private db: AngularFirestore) {
-    this.companiesCollectionRef = this.db.collection<Company>("companies");
+    this.companiesCollectionRef = this.db.collection<Company>('companies');
   }
 
   public add(company: Company) {

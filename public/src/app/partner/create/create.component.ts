@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { Company, PartnerService } from "src/app/common/partner.service";
+import { Component, OnInit } from '@angular/core';
+import { Company, PartnerService } from 'src/app/common/partner.service';
 
 @Component({
-  selector: "app-create",
-  templateUrl: "./create.component.html",
-  styleUrls: ["./create.component.scss"]
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
   success = false;
