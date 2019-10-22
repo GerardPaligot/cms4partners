@@ -29,6 +29,8 @@ jobs:
         run: npm --prefix functions run test
       - name: Install Dependencies Front
         run: npm --prefix public install
+      - name: Build Dependencies Front
+        run: npm --prefix public build
       - name: Test Front
         run: npm --prefix public run test
   deploy:
