@@ -15,6 +15,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
+      - name: Install Dependencies Firestore Test
+        run: npm --prefix firestore-test install
+      - name: firebase tools
+        run: npm i -g firebase-tools
+      - name: Setup Firestore Test
+        run: firebase setup:emulators:firestore
+      - name: Run Firestore Test
+        run: firebase emulators:exec --only firestore "npm --prefix firestore-test run test"
       - name: Install Dependencies Functions
         run: npm --prefix functions install
       - name: Test
