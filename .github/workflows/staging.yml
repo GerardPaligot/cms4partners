@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy on Staging
 on:
   push:
     branches:
@@ -17,7 +17,7 @@ jobs:
           node-version: "12.x"
       - name: Install Dependencies Firestore Test
         run: npm --prefix firestore-test install
-      - name: firebase tools
+      - name: Install firebase tools
         run: npm i -g firebase-tools
       - name: Setup Firestore Test
         run: firebase setup:emulators:firestore
@@ -25,11 +25,11 @@ jobs:
         run: firebase emulators:exec --only firestore "npm --prefix firestore-test run test"
       - name: Install Dependencies Functions
         run: npm --prefix functions install
-      - name: Test
+      - name: Test Functions
         run: npm --prefix functions run test
       - name: Install Dependencies Front
         run: npm --prefix public install
-      - name: Test
+      - name: Test Front
         run: npm --prefix public run test
   deploy:
     name: Deploy
