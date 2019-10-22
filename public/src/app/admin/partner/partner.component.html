@@ -1,5 +1,16 @@
-<app-form
-  [company]="partner$"
-  (submitEvent)="onSubmit($event)"
-  [readOnly]="false"
-></app-form>
+<nav class="navbar is-transparent">
+    <div class="navbar-menu">
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="field is-grouped">
+                    <p *ngIf="!(partnerValidated$ | async)" class="control">
+                        <button (click)="validate()" class="button is-primary">
+                            Valider
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<app-form [company]="partner$" (submitEvent)="onSubmit($event)" [readOnly]="false"> </app-form>

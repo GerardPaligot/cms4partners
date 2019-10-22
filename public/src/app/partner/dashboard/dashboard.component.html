@@ -1,5 +1,9 @@
-<app-form
-  [company]="partner$"
-  (submitEvent)="onSubmit($event)"
-  [readOnly]="true"
-></app-form>
+<div class="tabs is-centered">
+    <ul>
+        <li routerLinkActive="is-active"><a [routerLink]="['workflow']">Avancement</a></li>
+        <li routerLinkActive="is-active"><a [routerLink]="['infos']">Mes Informations</a></li>
+        <li routerLinkActive="is-active"><a [routerLink]="['faq']">Informations Complémentaire </a></li>
+    </ul>
+</div>
+
+<router-outlet></router-outlet>
