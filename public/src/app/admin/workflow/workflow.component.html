@@ -1,4 +1,4 @@
-<p *ngIf="!(partnerValidated$ | async)" class="control">
+<p *ngIf="(partnerValidated$ | async) === false" class="control">
     <button (click)="validate()" class="button is-primary">
         Valider
     </button>
