@@ -1,0 +1,33 @@
+name: Test on Production
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Install Dependencies Firestore Test
+        run: npm --prefix firestore-test install
+      - name: Install firebase tools
+        run: npm i -g firebase-tools
+      - name: Setup Firestore Test
+        run: firebase setup:emulators:firestore
+      - name: Run Firestore Test
+        run: firebase emulators:exec --only firestore "npm --prefix firestore-test run test"
+      - name: Install Dependencies Functions
+        run: npm --prefix functions install
+      - name: Test Functions
+        run: npm --prefix functions run test
+      - name: Install Dependencies Front
+        run: npm --prefix public install
+      - name: Test Front
+        run: npm --prefix public run test
