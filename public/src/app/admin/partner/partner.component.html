@@ -1,16 +1,8 @@
-<nav class="navbar is-transparent">
-    <div class="navbar-menu">
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="field is-grouped">
-                    <p *ngIf="!(partnerValidated$ | async)" class="control">
-                        <button (click)="validate()" class="button is-primary">
-                            Valider
-                        </button>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-<app-form [company]="partner$" (submitEvent)="onSubmit($event)" [readOnly]="false"> </app-form>
+<div class="tabs is-centered">
+    <ul>
+        <li routerLinkActive="is-active"><a [routerLink]="['workflow']">Avancement</a></li>
+        <li routerLinkActive="is-active"><a [routerLink]="['infos']">Informations</a></li>
+    </ul>
+</div>
+
+<router-outlet></router-outlet>

@@ -16,7 +16,8 @@ const routes: Routes = [
         children: [
             { path: 'workflow', component: WorkflowComponent },
             { path: 'faq', component: FaqComponent },
-            { path: 'infos', component: InfoComponent }
+            { path: 'infos', component: InfoComponent },
+            { path: '**', redirectTo: 'workflow' }
         ]
     }
 ];
