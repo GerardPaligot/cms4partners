@@ -20,8 +20,6 @@ export class WorkflowComponent implements OnInit {
 
     ngOnInit() {}
 
-    onSubmit(company: Company) {}
-
     validate() {
         this.partnerService.update(this.route.snapshot.paramMap.get('id'), { validated: true });
     }
