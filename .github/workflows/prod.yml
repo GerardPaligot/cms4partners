@@ -1,0 +1,46 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Install Dependencies Firestore Test
+        run: npm --prefix firestore-test install
+      - name: firebase tools
+        run: npm i -g firebase-tools
+      - name: Setup Firestore Test
+        run: firebase setup:emulators:firestore
+      - name: Run Firestore Test
+        run: firebase emulators:exec --only firestore "npm --prefix firestore-test run test"
+      - name: Install Dependencies Functions
+        run: npm --prefix functions install
+      - name: Test
+        run: npm --prefix functions run test
+      - name: Install Dependencies Front
+        run: npm --prefix public install
+      - name: Test
+        run: npm --prefix public run test
+  deploy:
+    name: Deploy
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
