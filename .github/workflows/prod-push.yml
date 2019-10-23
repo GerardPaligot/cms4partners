@@ -46,6 +46,8 @@ jobs:
           node-version: "12.x"
       - name: Install firebase tools
         run: npm i -g firebase-tools
+      - name: Build
+        run: npm --prefix public run build -- --configuration=production
       - name: Deploy to Firebase
         run: firebase deploy -P default
         env:

@@ -38,9 +38,15 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+      - name: Setup node
+        uses: actions/setup-node@v1
         with:
-          args: deploy -P staging
+          node-version: "12.x"
+      - name: Install firebase tools
+        run: npm i -g firebase-tools
+      - name: Build
+        run: npm --prefix public run build -- --configuration=staging
+      - name: Deploy to Firebase
+        run: firebase deploy -P staging
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
