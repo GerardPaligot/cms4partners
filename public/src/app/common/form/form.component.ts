@@ -22,7 +22,8 @@ export class FormComponent implements OnInit {
         email: '',
         role: '',
         sponsoring: '',
-        lang: ''
+        lang: '',
+        status: {}
     };
 
     @Input()

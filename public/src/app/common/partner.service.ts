@@ -14,7 +14,9 @@ export interface Company {
     role: string;
     sponsoring: string;
     lang: string;
-    validated?: boolean;
+    status: {
+        [key: string]: boolean;
+    };
 }
 
 @Injectable({

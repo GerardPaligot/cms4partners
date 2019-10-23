@@ -9,18 +9,32 @@ import { map } from 'rxjs/operators';
     templateUrl: './workflow.component.html',
     styleUrls: ['./workflow.component.scss']
 })
-export class WorkflowComponent implements OnInit {
+export class WorkflowComponent {
     partner$: Observable<Company>;
-    partnerValidated$: Observable<boolean>;
+    partnerNotValidated$: Observable<boolean>;
 
     constructor(private partnerService: PartnerService, private route: ActivatedRoute) {
-        this.partner$ = this.partnerService.get(route.parent.snapshot.paramMap.get('id'));
-        this.partnerValidated$ = this.partner$.pipe(map(partner => partner.validated));
+        this.createObservable();
     }
 
-    ngOnInit() {}
+    createObservable() {
+        this.partner$ = this.partnerService.get(this.route.parent.snapshot.paramMap.get('id'));
+        this.partnerNotValidated$ = this.partner$.pipe(
+            map(partner => {
+                return !(partner.status && partner.status.validated);
+            })
+        );
+    }
 
     validate() {
-        this.partnerService.update(this.route.snapshot.paramMap.get('id'), { validated: true });
+        this.partnerService
+            .update(this.route.parent.snapshot.paramMap.get('id'), {
+                status: {
+                    validated: true
+                }
+            })
+            .then(() => {
+                this.createObservable();
+            });
     }
 }
