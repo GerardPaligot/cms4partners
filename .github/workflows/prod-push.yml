@@ -30,7 +30,7 @@ jobs:
       - name: Install Dependencies Front
         run: npm --prefix public install
       - name: Build Dependencies Front
-        run: npm --prefix public build
+        run: npm --prefix public run build
       - name: Test Front
         run: npm --prefix public run test
   deploy:
@@ -40,9 +40,9 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - name: Install firebase tools
+        run: npm i -g firebase-tools
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy -P default
+        run: firebase deploy -P default
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
