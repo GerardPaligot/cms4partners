@@ -44,8 +44,10 @@ jobs:
           node-version: "12.x"
       - name: Install firebase tools
         run: npm i -g firebase-tools
-      - name: Build
-        run: npm --prefix public run build -- --configuration=staging
+      - name: Build Front
+        run: npm --prefix public install && npm --prefix public run build -- --configuration=staging
+      - name: Build Back
+        run: npm --prefix functions install && npm --prefix functions run build
       - name: Deploy to Firebase
         run: firebase deploy -P staging
         env:
