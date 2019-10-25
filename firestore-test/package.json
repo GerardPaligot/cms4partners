@@ -8,7 +8,7 @@
     "test": "mocha --timeout=10000"
   },
   "devDependencies": {
-    "@firebase/testing": "0.14.1",
+    "@firebase/testing": "0.14.2",
     "@types/mocha": "5.2.7",
     "filesystem": "1.0.1",
     "mocha": "5.2.0",
