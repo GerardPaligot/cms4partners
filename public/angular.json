@@ -22,10 +22,10 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "aot": false,
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": ["node_modules/bulma/css/bulma.css", "src/styles.scss"],
-                        "scripts": []
+                        "scripts": [],
+                        "aot": true
                     },
                     "configurations": {
                         "staging": {
