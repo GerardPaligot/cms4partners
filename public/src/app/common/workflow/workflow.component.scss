@@ -1,0 +1,34 @@
+@import 'variables.scss';
+
+// https://github.com/Wikiki/bulma-timeline
+
+$marker-size: 40px;
+
+.timeline {
+    .timeline-item {
+        &.disable {
+            cursor: no-drop;
+            opacity: 0.3;
+            padding-top: 1em;
+
+            .description {
+                display: none;
+            }
+        }
+
+        .timeline-content {
+            width: 100%;
+        }
+
+        .timeline-marker {
+            &.is-emoji {
+                height: $marker-size;
+                width: $marker-size;
+                display: flex;
+                font-size: 20px;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { WorkflowStatus } from './workflow/workflow.service';
 export interface Company {
     id?: string;
     name: string;
@@ -14,9 +15,7 @@ export interface Company {
     role: string;
     sponsoring: string;
     lang: string;
-    status: {
-        [key: string]: boolean;
-    };
+    status?: WorkflowStatus;
 }
 
 @Injectable({

@@ -9,11 +9,7 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-    partner$: Observable<Company>;
-    id: string;
-    constructor(private partnerService: PartnerService, route: ActivatedRoute) {
-        this.id = route.snapshot.paramMap.get('id');
-        this.partner$ = this.partnerService.get(route.snapshot.paramMap.get('id'));
+    constructor() {
     }
 
     ngOnInit() {}

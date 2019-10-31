@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class InfoComponent implements OnInit {
     partner$: Observable<Company>;
     id: string;
+
     constructor(private partnerService: PartnerService, route: ActivatedRoute) {
         this.id = route.parent.snapshot.paramMap.get('id');
         this.partner$ = this.partnerService.get(this.id);
