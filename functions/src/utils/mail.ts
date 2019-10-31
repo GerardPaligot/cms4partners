@@ -3,7 +3,7 @@ const functions = require('firebase-functions');
 export function getFrom() {
     return {
         From: {
-            Email: 'contact@gdglille.org',
+            Email: functions.config().mail.from,
             Name: 'GDG Lille'
         }
     };
@@ -30,6 +30,6 @@ export function sendEmail(to: string, subject: string, body: string) {
             console.log(result.body);
         })
         .catch((err: { statusCode: number }) => {
-            console.log(err.statusCode);
+            console.log(err);
         });
 }
