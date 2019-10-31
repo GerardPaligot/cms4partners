@@ -1,55 +1,55 @@
 {
-  "name": "functions",
-  "scripts": {
-    "lint": "tslint --project tsconfig.json",
-    "build": "tsc",
-    "serve": "npm run build && firebase serve --only functions",
-    "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log",
-    "test": "jest"
-  },
-  "engines": {
-    "node": "8"
-  },
-  "main": "lib/index.js",
-  "dependencies": {
-    "firebase-admin": "8.6.0",
-    "firebase-functions": "3.3.0",
-    "node-mailjet": "3.3.1"
-  },
-  "devDependencies": {
-    "@types/jest": "24.0.20",
-    "@types/node": "12.11.7",
-    "babel-jest": "24.9.0",
-    "jest": "24.9.0",
-    "ts-jest": "24.1.0",
-    "tslint": "5.20.0",
-    "typescript": "3.6.4"
-  },
-  "private": true,
-  "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "transform": {
-      "^.+\\.(js|jsx)$": "babel-jest",
-      "^.+\\.tsx?$": "ts-jest"
+    "name": "functions",
+    "scripts": {
+        "lint": "tslint --project tsconfig.json",
+        "build": "tsc",
+        "serve": "snpm run build && firebase serve --only functions,firestore",
+        "shell": "npm run build && firebase functions:shell",
+        "start": "npm run shell",
+        "deploy": "firebase deploy --only functions",
+        "logs": "firebase functions:log",
+        "test": "jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "globals": {
-      "ts-jest": {
-        "module": "commonjs"
-      }
+    "engines": {
+        "node": "8"
+    },
+    "main": "lib/index.js",
+    "dependencies": {
+        "firebase-admin": "8.6.0",
+        "firebase-functions": "3.3.0",
+        "node-mailjet": "3.3.1"
+    },
+    "devDependencies": {
+        "@types/jest": "24.0.20",
+        "@types/node": "12.11.7",
+        "babel-jest": "24.9.0",
+        "jest": "24.9.0",
+        "ts-jest": "24.1.0",
+        "tslint": "5.20.0",
+        "typescript": "3.6.4"
+    },
+    "private": true,
+    "jest": {
+        "roots": [
+            "<rootDir>/src"
+        ],
+        "transform": {
+            "^.+\\.(js|jsx)$": "babel-jest",
+            "^.+\\.tsx?$": "ts-jest"
+        },
+        "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx",
+            "json",
+            "node"
+        ],
+        "globals": {
+            "ts-jest": {
+                "module": "commonjs"
+            }
+        }
     }
-  }
 }

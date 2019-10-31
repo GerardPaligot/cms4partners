@@ -25,7 +25,7 @@ export function sendEmail(to: string, subject: string, body: string) {
             }
         ]
     });
-    request
+    return request
         .then((result: { body: string }) => {
             console.log(result.body);
         })
