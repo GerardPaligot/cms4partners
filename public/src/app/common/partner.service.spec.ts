@@ -20,7 +20,7 @@ describe('PartnerService', () => {
             }
         } as any);
 
-        service.add({ name: 'gdg' } as any);
-        expect(add).toHaveBeenCalledWith({ name: 'gdg' });
+        service.add({ name: 'gdg', email: [] } as any);
+        expect(add).toHaveBeenCalledWith({ name: 'gdg', email: [] });
     });
 });

@@ -30,12 +30,6 @@ describe('security', () => {
         await Promise.all(firebase.apps().map(app => app.delete()));
     });
 
-    it('should let anyone read any profile', async () => {
-        const db = authedApp(null);
-        const profile = db.collection('companies').doc('alice');
-        await firebase.assertSucceeds(profile.get());
-    });
-
     it('should let anonymous people not able to get all companies', async () => {
         const db = authedApp(null);
         const profile = db.collection('companies');

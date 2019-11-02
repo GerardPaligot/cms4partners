@@ -10,7 +10,7 @@ export interface Company {
     city: string;
     siret: string;
     representant: string;
-    email: string;
+    email: string | string[];
     role: string;
     sponsoring: string;
     lang: string;
@@ -29,7 +29,11 @@ export class PartnerService {
     }
 
     public add(company: Company) {
-        return this.companiesCollectionRef.add(company);
+        const emails = Array.isArray(company.email) ? company.email : company.email.split(',');
+        return this.companiesCollectionRef.add({
+            ...company,
+            email: emails
+        });
     }
 
     public update(id: string, fields: Partial<Company>) {
