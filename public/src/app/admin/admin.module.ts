@@ -4,8 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PartnerComponent } from './partner/partner.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonPartnersModule } from '../common/common.module';
-import { WorkflowComponent } from './workflow/workflow.component';
 import { InfoComponent } from './info/info.component';
+import { WorkflowComponent } from '../common/workflow/workflow.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent },
@@ -21,7 +21,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [DashboardComponent, PartnerComponent, WorkflowComponent, InfoComponent],
+    declarations: [DashboardComponent, PartnerComponent, InfoComponent],
     imports: [CommonModule, CommonPartnersModule, RouterModule.forChild(routes)],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
 })

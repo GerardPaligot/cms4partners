@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Company, PartnerService } from 'src/app/common/partner.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { PartnerStore } from 'src/app/partner/partner.store';
 
 @Component({
     selector: 'app-partner',
@@ -10,12 +11,19 @@ import { Observable } from 'rxjs';
 })
 export class PartnerComponent implements OnInit {
     partner$: Observable<Company>;
-
-    constructor(private partnerService: PartnerService, private route: ActivatedRoute) {
+    isLoading: boolean;
+    constructor(private partnerService: PartnerService, private route: ActivatedRoute, private partnerStore: PartnerStore) {
         this.partner$ = this.partnerService.get(route.snapshot.paramMap.get('id'));
+        this.isLoading = true;
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.partnerService.get(this.route.snapshot.paramMap.get('id')).subscribe((partner: Company) => {
+            console.log(partner);
+            this.partnerStore.broadcastPartner(partner);
+            this.isLoading = false;
+        });
+    }
 
     onSubmit(company: Company) {}
 

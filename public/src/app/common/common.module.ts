@@ -6,6 +6,7 @@ import { WorkflowComponent } from './workflow/workflow.component';
 import { FaqComponent } from './faq/faq.component';
 import { InfoComponent } from './info/info.component';
 import { LoaderComponent } from './loader/loader.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
     declarations: [FormComponent, WorkflowComponent, FaqComponent, InfoComponent, LoaderComponent],
