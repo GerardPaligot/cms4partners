@@ -20,10 +20,10 @@ export class PartnerComponent implements OnInit {
     onSubmit(company: Company) {}
 
     validate() {
-        this.partnerService.update(this.route.snapshot.paramMap.get('id'), {
-            status: {
-                validated: true
-            }
-        });
+        // this.partnerService.update(this.route.snapshot.paramMap.get('id'), {
+        //     status: {
+        //         validated: true
+        //     }
+        // });
     }
 }

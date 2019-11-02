@@ -27,14 +27,14 @@ export class WorkflowComponent {
     }
 
     validate() {
-        this.partnerService
-            .update(this.route.parent.snapshot.paramMap.get('id'), {
-                status: {
-                    validated: true
-                }
-            })
-            .then(() => {
-                this.createObservable();
-            });
+        // this.partnerService
+        //     .update(this.route.parent.snapshot.paramMap.get('id'), {
+        //         status: {
+        //             validated: true
+        //         }
+        //     })
+        //     .then(() => {
+        //         this.createObservable();
+        //     });
     }
 }
