@@ -4,9 +4,16 @@ service cloud.firestore {
     match /companies/{companyId} {
       allow list, update: if isGdgLille();
       allow create: if true;
+      allow get: if isOwner(companyId) || isGdgLille();
+    }
+    match /workflows/{workflowId} {
+      allow list: if true;
       allow get: if true;
     }
   }
+}
+function isOwner(companyId) {
+    return request.auth.token.email in resource.data.email;
 }
 function isGdgLille() {
     return request.auth.token.email.matches(".*@gdglille.org")

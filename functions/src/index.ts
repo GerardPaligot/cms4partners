@@ -49,7 +49,7 @@ function createUsers(emails: string[], id: string) {
 export const newPartner = functions.firestore.document('companies/{companyId}').onCreate((snap, context) => {
     const company = snap.data() || {};
 
-    return Promise.all(createUsers(company.email.split(','), snap.id))
+    return Promise.all(createUsers(company.email, snap.id))
         .then(() => {
             return sendEmail(
                 functions.config().mail.to,
