@@ -8,23 +8,25 @@ export interface Workflow {
     steps: WorkflowStep[];
 }
 
+type State = 'disabled' | 'enabled' | 'pending' | 'done';
+
 export interface WorkflowStep {
     key: keyof WorkflowStatus;
     order: number;
     title: string;
-    state: 'disabled' | 'enabled' | 'pending' | 'done';
+    state: State;
     icon: string;
     description: string;
     class: 'is-primary' | 'is-danger' | 'is-secondary' | '';
 }
 
 export interface WorkflowStatus {
-    isFilled?: boolean;
-    isValidated?: boolean;
-    isSign?: boolean;
-    isPaid?: boolean;
-    isReceived?: boolean;
-    isCommunicated?: boolean;
+    filled?: State;
+    validated?: State;
+    sign?: State;
+    paid?: State;
+    received?: State;
+    communicated?: State;
 }
 
 @Injectable({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Company, PartnerService, WorkflowStatus } from '../partner.service';
 import { ActivatedRoute } from '@angular/router';
 import { WorkflowStep, WorkflowService, Workflow } from './workflow.service';
-import { map, flatMap } from 'rxjs/operators';
+import { PartnerStore } from 'src/app/partner/partner.store';
+import { Company } from '../partner.service';
 
 @Component({
     selector: 'app-workflow',
@@ -12,34 +12,50 @@ import { map, flatMap } from 'rxjs/operators';
 export class WorkflowComponent implements OnInit {
     public id: string;
     public workflow: Workflow;
+    public partner: Company;
+    public isLoading = true;
 
-    constructor(private partnerService: PartnerService, route: ActivatedRoute, private workflowService: WorkflowService) {
-        this.id = route.parent.snapshot.paramMap.get('id');
-    }
+    constructor(private route: ActivatedRoute, private workflowService: WorkflowService, private partnerStore: PartnerStore) {}
 
     ngOnInit() {
-        this.workflowService
-            .getAll()
-            .pipe(
-                map(workflows => {
-                    this.workflow = workflows[0];
-                }),
-                flatMap(() => this.partnerService.get(this.id))
-            )
-            .subscribe((partner: Company) => {
-                console.log(partner);
-                // if (partner.status.isFilled) {
-                //     this.steps[0].state = 'done';
-                //     this.steps[0].class = 'is-primary';
-                // }
-                // if (partner.status.isValidated) {
-                // }
-                // if (partner.status.isSign) {
-                // }
-                // if (partner.status.isPaid) {
-                // }
-                // if (partner.status.isCommunicated) {
-                // }
-            });
+        this.id = this.route.parent.snapshot.paramMap.get('id');
+        this.partner = this.partnerStore.partner;
+
+        this.workflowService.getAll().subscribe(workflows => {
+            this.applyWorkflow(workflows[0]);
+        });
+    }
+
+    applyWorkflow(workflow: Workflow) {
+        console.log(workflow);
+        console.log(this.partner);
+
+        workflow.steps = workflow.steps.map((step: WorkflowStep) => {
+            switch (this.partner.status[step.key]) {
+                case 'done':
+                    step.state = 'done';
+                    step.class = 'is-primary';
+                    break;
+
+                case 'pending':
+                    step.state = 'pending';
+                    step.class = 'is-secondary';
+                    break;
+
+                case 'disabled':
+                    step.state = 'disabled';
+                    step.class = 'is-danger';
+                    break;
+
+                default:
+                    step.state = 'disabled';
+                    step.class = 'is-secondary';
+                    break;
+            }
+            return step;
+        });
+
+        this.workflow = workflow;
+        this.isLoading = false;
     }
 }

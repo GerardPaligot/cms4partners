@@ -6,7 +6,7 @@ $marker-size: 40px;
 
 .timeline {
     .timeline-item {
-        &.disable {
+        &.disabled {
             cursor: no-drop;
             opacity: 0.3;
             padding-top: 1em;
@@ -29,6 +29,12 @@ $marker-size: 40px;
                 align-items: center;
                 justify-content: center;
             }
+        }
+    }
+    .description {
+        .tag {
+            margin-right: 10px;
+            display: inline-flex;
         }
     }
 }

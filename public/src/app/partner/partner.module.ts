@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { CreateComponent } from './create/create.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { CommonPartnersModule } from '../common/common.module';
 import { RouterModule, Routes } from '@angular/router';
 import { FaqComponent } from '../common/faq/faq.component';
@@ -19,13 +18,13 @@ const routes: Routes = [
             { path: 'workflow', component: WorkflowComponent },
             { path: 'faq', component: FaqComponent },
             { path: 'infos', component: InfoComponent },
-            { path: 'dashboard', component: DashboardComponent }
+            { path: '**', redirectTo: 'workflow'}
         ]
     }
 ];
 
 @NgModule({
-    declarations: [CreateComponent, DashboardComponent, NavigationComponent, PartnerComponent],
+    declarations: [CreateComponent, NavigationComponent, PartnerComponent],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 
     imports: [CommonModule, CommonPartnersModule, RouterModule.forChild(routes)]
