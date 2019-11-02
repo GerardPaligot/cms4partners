@@ -1,0 +1,13 @@
+<div *ngIf="isLoading">
+    <app-loader></app-loader>
+</div>
+<div *ngIf="partner && !isLoading">
+    <p class="title">
+        {{ partner.name }}
+    </p>
+    <p class="subtitle">Espace partenaire: Tout ce que vous avez besoin dans <strong>un même outils</strong> 👌</p>
+
+    <app-navigation></app-navigation>
+    <br />
+    <router-outlet></router-outlet>
+</div>

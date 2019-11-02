@@ -23,7 +23,15 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["node_modules/bulma/css/bulma.css", "src/styles.scss"],
+                        "styles": [
+                            "node_modules/bulma/css/bulma.css",
+                            "node_modules/bulma-timeline/dist/css/bulma-timeline.min.css",
+                            "src/styles.scss",
+                            "src/scss/variables.scss"
+                        ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/scss"]
+                        },
                         "scripts": [],
                         "aot": true
                     },
