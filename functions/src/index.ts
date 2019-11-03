@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import { sendEmail } from './utils/mail';
 
 admin.initializeApp();
-
+const firestore = admin.firestore();
 export const helloWorldMiddleware = (request: Partial<functions.Request>, response: Pick<functions.Response, 'send'>) => {
     response.send('Hello from Firebase!');
 };
@@ -26,6 +26,14 @@ function createUsers(emails: string[], id: string) {
                 displayName: emailTrim,
                 emailVerified: true,
                 password
+            })
+            .then(() => {
+                return firestore.doc('companies/' + id).update({
+                    status: {
+                        filled: 'done',
+                        validated: 'pending'
+                    }
+                });
             })
             .then(() => {
                 return sendEmail(
