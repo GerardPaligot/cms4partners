@@ -1,0 +1,12 @@
+<p *ngIf="step.state !== 'done'">{{ step.description }}</p>
+<ng-container *ngIf="step.state === 'done'">
+    <p>
+        Votre demande de partenariat vient d'être validé par l'équipe du Devfest Lille. Vous devez à présent retourner le deux documents
+        ci-joints signés par email à contact@gdglille.org ng-container
+    </p>
+    <ul>
+        <li><a [href]="company.conventionUrl">Convention</a></li>
+
+        <li><a [href]="company.devisUrl">Devis</a></li>
+    </ul>
+</ng-container>

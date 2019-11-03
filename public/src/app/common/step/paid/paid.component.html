@@ -1,0 +1,9 @@
+<p *ngIf="step.state !== 'done'">{{ step.description }}</p>
+<ng-container *ngIf="step.state === 'done'">
+    <p>
+        Nous avons bien reçu le paiement. Vous trouverez ci-joint la facture suite à notre partenariat.
+    </p>
+    <ul>
+        <li><a [href]="company.invoiceUrl">Facture</a></li>
+    </ul>
+</ng-container>

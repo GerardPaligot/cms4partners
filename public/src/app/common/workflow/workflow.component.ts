@@ -27,9 +27,6 @@ export class WorkflowComponent implements OnInit {
     }
 
     applyWorkflow(workflow: Workflow) {
-        console.log(workflow);
-        console.log(this.partner);
-
         workflow.steps = workflow.steps.map((step: WorkflowStep) => {
             switch (this.partner.status[step.key]) {
                 case 'done':

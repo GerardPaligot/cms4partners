@@ -2,17 +2,7 @@
     <header class="timeline-header">
         <span class="tag is-medium is-primary">👌</span>
     </header>
-    <div class="timeline-item" *ngFor="let step of workflow.steps" [ngClass]="[step.state]">
-        <div class="timeline-marker is-emoji" [ngClass]="[step.class]">{{ step.icon }}</div>
-        <div class="timeline-content">
-            <p class="heading">{{ step.title }}</p>
-            <div class="description">
-                <span *ngIf="step.state === 'done'" class="tag is-success">Validé</span>
-                <span *ngIf="step.state === 'pending'" class="tag is-warning">En attente</span>
-                {{ step.description }}
-            </div>
-        </div>
-    </div>
+    <app-main-step *ngFor="let step of workflow.steps" [step]="step" [workflow]="workflow" [company]="partner" [id]="id"></app-main-step>
     <header class="timeline-header">
         <span class="tag is-medium is-primary">🎉</span>
     </header>

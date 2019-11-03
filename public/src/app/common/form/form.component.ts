@@ -23,7 +23,10 @@ export class FormComponent implements OnInit {
         role: '',
         sponsoring: '',
         lang: '',
-        status: {}
+        status: {},
+        devisUrl: '',
+        conventionUrl: '',
+        invoiceUrl: ''
     };
 
     @Input()

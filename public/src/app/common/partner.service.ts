@@ -16,6 +16,9 @@ export interface Company {
     sponsoring: string;
     lang: string;
     status?: WorkflowStatus;
+    devisUrl: string;
+    conventionUrl: string;
+    invoiceUrl: string;
 }
 
 @Injectable({
