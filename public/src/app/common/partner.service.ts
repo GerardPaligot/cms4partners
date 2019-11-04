@@ -19,6 +19,7 @@ export interface Company {
     devisUrl: string;
     conventionUrl: string;
     invoiceUrl: string;
+    type?: 'esn' | 'other';
 }
 
 @Injectable({

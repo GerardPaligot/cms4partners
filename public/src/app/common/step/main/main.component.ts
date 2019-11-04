@@ -6,6 +6,7 @@ import { PaidComponent } from '../paid/paid.component';
 import { Company } from '../../partner.service';
 import { AdminValidatedComponent } from '../admin/validated/validated.component';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { FilledComponent } from '../admin/filled/filled.component';
 
 @Component({
     selector: 'app-main-step',
@@ -19,6 +20,7 @@ export class MainComponent implements AfterViewInit {
     };
 
     adminCOmponent = {
+        filled: FilledComponent,
         validated: AdminValidatedComponent,
         paid: AdminValidatedComponent
     };

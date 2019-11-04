@@ -8,7 +8,7 @@ export interface Workflow {
     steps: WorkflowStep[];
 }
 
-type State = 'disabled' | 'enabled' | 'pending' | 'done';
+export type State = 'disabled' | 'enabled' | 'pending' | 'done';
 
 export interface WorkflowStep {
     key: keyof WorkflowStatus;
@@ -52,7 +52,6 @@ export class WorkflowService {
             map(actions => {
                 return actions.map(a => {
                     const workflow = a.payload.doc.data() as Workflow;
-                    // const id = a.payload.doc.id;
                     return { ...workflow };
                 });
             })

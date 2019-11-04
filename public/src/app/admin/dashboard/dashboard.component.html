@@ -1,3 +1,37 @@
+<div class="tile is-ancestor">
+    <div class="tile is-vertical is-8">
+        <div class="tile">
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-primary">
+                    <p class="subtitle">ESN validés</p>
+                    <p class="title">{{ summary.esnOK }}</p>
+                </article>
+                <article class="tile is-child notification is-warning">
+                    <p class="subtitle">ESN non validés</p>
+                    <p class="title">{{ summary.esnKO }}</p>
+                </article>
+            </div>
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-primary">
+                    <p class="subtitle">Autres validés</p>
+                    <p class="title">{{ summary.otherOK }}</p>
+                </article>
+                <article class="tile is-child notification is-warning">
+                    <p class="subtitle">Autres non validés</p>
+                    <p class="title">{{ summary.otherKO }}</p>
+                </article>
+            </div>
+        </div>
+    </div>
+    <div class="tile is-parent">
+        <article class="tile is-child notification is-success">
+            <div class="content">
+                <p class="subtitle">Nombre total</p>
+                <p class="title">{{ summary.total }}</p>
+            </div>
+        </article>
+    </div>
+</div>
 <table
     class="table is-striped is-bordered is-fullwidth
 "
@@ -11,7 +45,7 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let partner of partners | async">
+        <tr *ngFor="let partner of partners">
             <th>{{ partner.name }}</th>
             <td>
                 {{ partner.sponsoring }}

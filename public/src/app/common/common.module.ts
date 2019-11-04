@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormComponent } from './form/form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { WorkflowComponent } from './workflow/workflow.component';
 import { FaqComponent } from './faq/faq.component';
 import { InfoComponent } from './info/info.component';
@@ -12,6 +12,7 @@ import { MainComponent } from './step/main/main.component';
 import { ValidatedComponent } from './step/validated/validated.component';
 import { PaidComponent } from './step/paid/paid.component';
 import { AdminValidatedComponent } from './step/admin/validated/validated.component';
+import { FilledComponent } from './step/admin/filled/filled.component';
 
 @NgModule({
     declarations: [
@@ -24,10 +25,11 @@ import { AdminValidatedComponent } from './step/admin/validated/validated.compon
         MainComponent,
         ValidatedComponent,
         PaidComponent,
-        AdminValidatedComponent
+        AdminValidatedComponent,
+        FilledComponent
     ],
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, FormsModule],
     exports: [FormComponent, LoaderComponent],
-    entryComponents: [DefaultComponent, ValidatedComponent, PaidComponent, AdminValidatedComponent]
+    entryComponents: [DefaultComponent, ValidatedComponent, PaidComponent, AdminValidatedComponent, FilledComponent]
 })
 export class CommonPartnersModule {}
