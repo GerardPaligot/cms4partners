@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { WorkflowStatus } from './workflow/workflow.service';
 export interface Company {
@@ -27,6 +27,7 @@ export interface Company {
 })
 export class PartnerService {
     companiesCollectionRef: AngularFirestoreCollection<Company>;
+    updateFlag: Subject<boolean> = new BehaviorSubject(true);
     constructor(private db: AngularFirestore) {
         this.companiesCollectionRef = this.db.collection<Company>('companies');
     }
@@ -40,6 +41,7 @@ export class PartnerService {
     }
 
     public update(id: string, fields: Partial<Company>) {
+        this.updateFlag.next();
         return this.companiesCollectionRef.doc(id).update(fields);
     }
 

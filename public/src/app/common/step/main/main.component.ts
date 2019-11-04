@@ -1,4 +1,15 @@
-import { Component, AfterViewInit, OnInit, Input, ViewChild, ElementRef, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import {
+    Component,
+    AfterViewInit,
+    OnInit,
+    Input,
+    ViewChild,
+    ElementRef,
+    ComponentFactoryResolver,
+    ViewContainerRef,
+    OnChanges,
+    SimpleChanges
+} from '@angular/core';
 import { Workflow, WorkflowStep } from '../../workflow/workflow.service';
 import { DefaultComponent } from '../default/default.component';
 import { ValidatedComponent } from '../validated/validated.component';
@@ -13,7 +24,7 @@ import { FilledComponent } from '../admin/filled/filled.component';
     templateUrl: './main.component.html',
     styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements AfterViewInit {
+export class MainComponent implements AfterViewInit, OnChanges {
     publicComponents = {
         validated: ValidatedComponent,
         paid: PaidComponent
@@ -35,15 +46,27 @@ export class MainComponent implements AfterViewInit {
 
     constructor(private componentFactoryResolver: ComponentFactoryResolver, private aauth: AngularFireAuth) {}
 
-    ngAfterViewInit(): void {
-        const components = this.aauth.auth.currentUser.email.endsWith('@gdglille.org') ? this.adminCOmponent : this.publicComponents;
-        this.content.clear();
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(components[this.step.key] || DefaultComponent);
-        const component = this.content.createComponent(componentFactory);
-        (component.instance as any).step = this.step;
-        (component.instance as any).company = this.company;
-        (component.instance as any).id = this.id;
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes.company && changes.company) {
+            this.createComponent();
+        }
+    }
 
-        component.changeDetectorRef.detectChanges();
+    private createComponent() {
+        try {
+            const components = this.aauth.auth.currentUser.email.endsWith('@gdglille.org') ? this.adminCOmponent : this.publicComponents;
+            this.content.clear();
+            const componentFactory = this.componentFactoryResolver.resolveComponentFactory(components[this.step.key] || DefaultComponent);
+            const component = this.content.createComponent(componentFactory);
+            (component.instance as any).step = this.step;
+            (component.instance as any).company = this.company;
+            (component.instance as any).id = this.id;
+
+            component.changeDetectorRef.detectChanges();
+        } catch (e) {}
+    }
+
+    ngAfterViewInit(): void {
+        this.createComponent();
     }
 }

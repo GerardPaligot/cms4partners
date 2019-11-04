@@ -1,2 +1,2 @@
-<button class="button is-warning" (click)="setPending()">Set Pending</button>
-<button class="button is-success" (click)="setDone()">Set Done</button>
+<button *ngIf="company.status[step.key] !== 'pending'" class="button is-warning" (click)="setPending()">Set Pending</button>
+<button *ngIf="company.status[step.key] !== 'done'" class="button is-success" (click)="setDone()">Set Done</button>

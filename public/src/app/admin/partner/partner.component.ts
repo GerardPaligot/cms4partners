@@ -3,6 +3,7 @@ import { Company, PartnerService } from 'src/app/common/partner.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PartnerStore } from 'src/app/partner/partner.store';
+import { startWith, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-partner',
@@ -13,16 +14,21 @@ export class PartnerComponent implements OnInit {
     partner$: Observable<Company>;
     isLoading: boolean;
     constructor(private partnerService: PartnerService, private route: ActivatedRoute, private partnerStore: PartnerStore) {
-        this.partner$ = this.partnerService.get(route.snapshot.paramMap.get('id'));
         this.isLoading = true;
     }
 
     ngOnInit() {
-        this.partnerService.get(this.route.snapshot.paramMap.get('id')).subscribe((partner: Company) => {
-            console.log(partner);
-            this.partnerStore.broadcastPartner(partner);
-            this.isLoading = false;
-        });
+        this.partnerService.updateFlag
+            .pipe(
+                startWith(),
+                switchMap(() => {
+                    return this.partnerService.get(this.route.snapshot.paramMap.get('id'));
+                })
+            )
+            .subscribe((partner: Company) => {
+                this.partnerStore.broadcastPartner(partner);
+                this.isLoading = false;
+            });
     }
 
     onSubmit(company: Company) {}

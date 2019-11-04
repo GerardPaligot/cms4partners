@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { WorkflowStep, WorkflowService, Workflow } from './workflow.service';
 import { PartnerStore } from 'src/app/partner/partner.store';
 import { Company } from '../partner.service';
+import { tap, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-workflow',
@@ -19,11 +20,19 @@ export class WorkflowComponent implements OnInit {
 
     ngOnInit() {
         this.id = this.route.parent.snapshot.paramMap.get('id');
-        this.partner = this.partnerStore.partner;
 
-        this.workflowService.getAll().subscribe(workflows => {
-            this.applyWorkflow(workflows[0]);
-        });
+        this.workflowService
+            .getAll()
+            .pipe(
+                tap(workflow => (this.workflow = workflow[0])),
+                switchMap(() => {
+                    return this.partnerStore.partner$;
+                })
+            )
+            .subscribe(partner => {
+                this.partner = partner;
+                this.applyWorkflow(this.workflow);
+            });
     }
 
     applyWorkflow(workflow: Workflow) {
