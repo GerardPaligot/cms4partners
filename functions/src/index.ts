@@ -29,6 +29,7 @@ function createUsers(emails: string[], id: string) {
             })
             .then(() => {
                 return firestore.doc('companies/' + id).update({
+                    creationDate: new Date(),
                     status: {
                         filled: 'done',
                         validated: 'pending'
@@ -54,6 +55,7 @@ function createUsers(emails: string[], id: string) {
             });
     });
 }
+
 export const newPartner = functions.firestore.document('companies/{companyId}').onCreate((snap, context) => {
     const company = snap.data() || {};
 
@@ -68,4 +70,66 @@ export const newPartner = functions.firestore.document('companies/{companyId}').
             );
         })
         .catch(err => console.log(err));
+});
+
+export const partnershipUpdated = functions.firestore.document('companies/{companyId}').onUpdate((changes, context) => {
+    const before = changes.before.data();
+    const after = changes.after.data();
+    if (!before || !after) {
+        return;
+    }
+    const id = changes.after.id;
+
+    const status = after.status;
+    let update = {};
+    if (before.status.validated !== after.status.validated && after.status.validated === 'done') {
+        // TODO call pour generer la convention et le devis et set le devisUrl et conventionUrl
+        update = {
+            status: {
+                ...status,
+                sign: 'pending'
+            },
+            devisUrl: 'https://google.fr',
+            conventionUrl: 'https://google.fr'
+        };
+    } else if (before.status.sign !== after.status.sign && after.status.sign === 'done') {
+        update = {
+            status: {
+                ...status,
+                paid: 'pending'
+            }
+        };
+    } else if (before.status.paid !== after.status.paid && after.status.paid === 'done') {
+        // TODO call pour generer la facture et set l'invoiceURL
+        update = {
+            status: {
+                ...status,
+                received: 'pending'
+            },
+            invoiceUrl: 'https://google.fr'
+        };
+    } else if (after.status.received === 'pending' && after.twitter !== '' && after.facebook !== '' && after.linkedin !== '') {
+        update = {
+            status: {
+                ...status,
+                received: 'done'
+            }
+        };
+    }
+    // TODO quand l'URL vers l'image a ete ajouté, mettre a done
+
+    if (status.communicated !== 'pending' && status.communicated !== 'done' && status.received === 'done') {
+        // si l'image et le message sont à done, mettre communicated a pending
+
+        update = {
+            status: {
+                ...status,
+                communicated: 'pending'
+            }
+        };
+    }
+
+    return firestore.doc('companies/' + id).update({
+        ...update
+    });
 });

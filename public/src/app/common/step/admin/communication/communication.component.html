@@ -1,0 +1,7 @@
+<app-admin-validated [workflow]="workflow" [step]="step" [company]="company" [id]="id"></app-admin-validated>
+<div class="field">
+    <div class="control">
+        <input class="input is-primary" type="date" placeholder="date de publication" [(ngModel)]="company.publicationDate" />
+    </div>
+</div>
+<button class="button is-success" (click)="setDate()">Valider</button>

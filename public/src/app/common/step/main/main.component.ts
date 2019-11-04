@@ -18,6 +18,8 @@ import { Company } from '../../partner.service';
 import { AdminValidatedComponent } from '../admin/validated/validated.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FilledComponent } from '../admin/filled/filled.component';
+import { SocialComponent } from '../admin/social/social.component';
+import { CommunicationComponent } from '../admin/communication/communication.component';
 
 @Component({
     selector: 'app-main-step',
@@ -27,13 +29,17 @@ import { FilledComponent } from '../admin/filled/filled.component';
 export class MainComponent implements AfterViewInit, OnChanges {
     publicComponents = {
         validated: ValidatedComponent,
-        paid: PaidComponent
+        paid: PaidComponent,
+        received: SocialComponent
     };
 
     adminCOmponent = {
         filled: FilledComponent,
         validated: AdminValidatedComponent,
-        paid: AdminValidatedComponent
+        sign: AdminValidatedComponent,
+        paid: AdminValidatedComponent,
+        received: SocialComponent,
+        communicated: CommunicationComponent
     };
 
     @Input() workflow: Workflow;

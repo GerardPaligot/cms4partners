@@ -13,6 +13,8 @@ import { ValidatedComponent } from './step/validated/validated.component';
 import { PaidComponent } from './step/paid/paid.component';
 import { AdminValidatedComponent } from './step/admin/validated/validated.component';
 import { FilledComponent } from './step/admin/filled/filled.component';
+import { SocialComponent } from './step/admin/social/social.component';
+import { CommunicationComponent } from './step/admin/communication/communication.component';
 
 @NgModule({
     declarations: [
@@ -26,10 +28,20 @@ import { FilledComponent } from './step/admin/filled/filled.component';
         ValidatedComponent,
         PaidComponent,
         AdminValidatedComponent,
-        FilledComponent
+        FilledComponent,
+        SocialComponent,
+        CommunicationComponent
     ],
     imports: [CommonModule, ReactiveFormsModule, FormsModule],
     exports: [FormComponent, LoaderComponent],
-    entryComponents: [DefaultComponent, ValidatedComponent, PaidComponent, AdminValidatedComponent, FilledComponent]
+    entryComponents: [
+        CommunicationComponent,
+        SocialComponent,
+        DefaultComponent,
+        ValidatedComponent,
+        PaidComponent,
+        AdminValidatedComponent,
+        FilledComponent
+    ]
 })
 export class CommonPartnersModule {}
