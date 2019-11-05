@@ -14,6 +14,7 @@ export interface Company {
     email: string | string[];
     role: string;
     sponsoring: string;
+    secondSponsoring?: string;
     lang: string;
     status?: WorkflowStatus;
     devisUrl: string;
@@ -66,7 +67,6 @@ export class PartnerService {
     public getAll(): Observable<Company[]> {
         return this.companiesCollectionRef.snapshotChanges().pipe(
             map(actions => {
-                console.log(actions);
                 return actions.map(a => {
                     const company = a.payload.doc.data() as Company;
                     const id = a.payload.doc.id;

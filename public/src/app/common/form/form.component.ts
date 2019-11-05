@@ -22,6 +22,7 @@ export class FormComponent implements OnInit {
         email: '',
         role: '',
         sponsoring: '',
+        secondSponsoring: '',
         lang: '',
         status: {},
         devisUrl: '',
@@ -56,6 +57,7 @@ export class FormComponent implements OnInit {
             email: new FormControl({ value: company.email, disabled: this.readOnly }, [Validators.required]),
             role: new FormControl({ value: company.role, disabled: this.readOnly }, [Validators.required]),
             sponsoring: new FormControl({ value: company.sponsoring, disabled: this.readOnly }, [Validators.required]),
+            secondSponsoring: new FormControl({ value: company.secondSponsoring, disabled: this.readOnly }),
             lang: new FormControl({ value: company.lang, disabled: this.readOnly }, [Validators.required])
         });
     }
