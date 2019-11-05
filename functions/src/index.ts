@@ -79,10 +79,9 @@ export const partnershipUpdated = functions.firestore.document('companies/{compa
     if (!before || !after) {
         return;
     }
-
-    const update = onDocumentChange(before, after);
-
     const id = changes.after.id;
+
+    const update = onDocumentChange(before, after, id);
 
     return firestore.doc('companies/' + id).update({
         ...update
