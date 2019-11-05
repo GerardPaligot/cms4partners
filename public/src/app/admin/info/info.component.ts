@@ -11,12 +11,17 @@ import { map } from 'rxjs/operators';
 })
 export class InfoComponent implements OnInit {
     partner$: Observable<Company>;
+    id: string;
 
     constructor(private partnerService: PartnerService, private route: ActivatedRoute) {
-        this.partner$ = this.partnerService.get(route.parent.snapshot.paramMap.get('id'));
+        this.id = route.parent.snapshot.paramMap.get('id');
+
+        this.partner$ = this.partnerService.get(this.id);
     }
 
     ngOnInit() {}
 
-    onSubmit(company: Company) {}
+    onSubmit(company: Company) {
+        this.partnerService.update(this.id, company);
+    }
 }
