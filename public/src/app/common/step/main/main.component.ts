@@ -20,6 +20,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { FilledComponent } from '../admin/filled/filled.component';
 import { SocialComponent } from '../admin/social/social.component';
 import { CommunicationComponent } from '../admin/communication/communication.component';
+import { CommunicatedComponent } from '../communicated/communicated.component';
 
 @Component({
     selector: 'app-main-step',
@@ -30,7 +31,8 @@ export class MainComponent implements AfterViewInit, OnChanges {
     publicComponents = {
         validated: ValidatedComponent,
         paid: PaidComponent,
-        received: SocialComponent
+        received: SocialComponent,
+        communicated: CommunicatedComponent
     };
 
     adminCOmponent = {

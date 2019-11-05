@@ -15,6 +15,7 @@ import { AdminValidatedComponent } from './step/admin/validated/validated.compon
 import { FilledComponent } from './step/admin/filled/filled.component';
 import { SocialComponent } from './step/admin/social/social.component';
 import { CommunicationComponent } from './step/admin/communication/communication.component';
+import { CommunicatedComponent } from './step/communicated/communicated.component';
 
 @NgModule({
     declarations: [
@@ -30,11 +31,13 @@ import { CommunicationComponent } from './step/admin/communication/communication
         AdminValidatedComponent,
         FilledComponent,
         SocialComponent,
-        CommunicationComponent
+        CommunicationComponent,
+        CommunicatedComponent
     ],
     imports: [CommonModule, ReactiveFormsModule, FormsModule],
     exports: [FormComponent, LoaderComponent],
     entryComponents: [
+        CommunicatedComponent,
         CommunicationComponent,
         SocialComponent,
         DefaultComponent,

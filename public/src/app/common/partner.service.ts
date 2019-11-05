@@ -25,6 +25,7 @@ export interface Company {
     twitter?: string;
     linkedin?: string;
     publicationDate?: Date;
+    flyerUrl?: string;
 }
 
 @Injectable({
