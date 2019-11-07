@@ -29,6 +29,7 @@ import { CommunicatedComponent } from '../communicated/communicated.component';
 })
 export class MainComponent implements AfterViewInit, OnChanges {
     publicComponents = {
+        filled: FilledComponent,
         validated: ValidatedComponent,
         paid: PaidComponent,
         received: SocialComponent,
@@ -41,7 +42,7 @@ export class MainComponent implements AfterViewInit, OnChanges {
         sign: AdminValidatedComponent,
         paid: AdminValidatedComponent,
         received: SocialComponent,
-        communicated: CommunicationComponent
+        communicated: CommunicatedComponent
     };
 
     @Input() workflow: Workflow;

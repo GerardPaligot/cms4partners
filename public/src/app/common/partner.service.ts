@@ -26,6 +26,7 @@ export interface Company {
     linkedin?: string;
     publicationDate?: Date;
     flyerUrl?: string;
+    creationDate?: Date;
 }
 
 @Injectable({
@@ -42,6 +43,7 @@ export class PartnerService {
         const emails = Array.isArray(company.email) ? company.email : company.email.split(',');
         return this.companiesCollectionRef.add({
             ...company,
+            status: {},
             email: emails
         });
     }

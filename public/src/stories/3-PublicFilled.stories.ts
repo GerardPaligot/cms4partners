@@ -1,17 +1,18 @@
-import { FilledComponent } from '../app/common/step/admin/filled/filled.component';
+import { FilledComponent } from '../app/common/step/filled/filled.component';
 import { PartnerService } from '../app/common/partner.service';
-import { moduleMetadata } from '@storybook/angular';
 
 export default {
-    title: 'Admin / Filled'
+    title: 'Public / Filled'
 };
 
 export const simple = () => ({
-    template: `<app-admin-filled [id]="id" [company]="company"></app-admin-filled>`,
+    template: `<app-public-filled [id]="id" [company]="company"></app-public-filled>`,
 
     props: {
         id: '1',
-        company: {}
+        company: {
+            sponsoring: 'bronze'
+        }
     },
     moduleMetadata: {
         declarations: [FilledComponent],

@@ -1,8 +1,10 @@
-<p *ngIf="step.state !== 'done'">{{ step.description }}</p>
-<ng-container *ngIf="step.state === 'done'">
+<p *ngIf="company.status.validated !== 'done'">{{ step.description }}</p>
+<ng-container *ngIf="company.status.validated === 'done'">
     <p>
-        Votre demande de partenariat vient d'être validé par l'équipe du Devfest Lille. Vous devez à présent retourner le deux documents
-        ci-joints signés par email à contact@gdglille.org ng-container
+        Bonne nouvelle ! Votre demande de pack {{ company.sponsoring }} pour le Devfest Lille 2020 a été validé. Vous trouverez ci joint le
+        contrat pour ce partenariat à nous retourner signé ainsi que la facture proforma à acquitter. Vous pouvez nous faire parvenir le
+        contrat soit en retour de ce mail, soit en le transférant sur ce site cms4devfest. Ce pack {{ company.sponsoring }} vous est reservé
+        jusqu'au {{ company.creationDate | add: 15 | date }}.
     </p>
     <ul>
         <li><a [href]="company.conventionUrl">Convention</a></li>

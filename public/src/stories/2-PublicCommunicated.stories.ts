@@ -1,6 +1,3 @@
-import { FilledComponent } from '../app/common/step/admin/filled/filled.component';
-import { PartnerService } from '../app/common/partner.service';
-import { moduleMetadata } from '@storybook/angular';
 import { CommunicatedComponent } from 'src/app/common/step/communicated/communicated.component';
 
 export default {

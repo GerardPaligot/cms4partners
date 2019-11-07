@@ -4,13 +4,13 @@ import * as admin from 'firebase-admin';
 function generateInvoiceNumber(id: string) {
     const firestore = admin.firestore();
     return firestore
-        .doc('configuration/invoice_2019')
+        .doc('configuration/invoice_2020')
         .get()
         .then(invoice => {
             return (invoice.data() as any).number;
         })
         .then(invoiceNumber => {
-            const formattedNumber = '2019_' + invoiceNumber.padStart(3, '0');
+            const formattedNumber = '2020_' + invoiceNumber.padStart(3, '0');
             firestore
                 .doc('companies/' + id)
                 .update({
@@ -21,7 +21,7 @@ function generateInvoiceNumber(id: string) {
         })
         .then(([formattedNumber, invoiceNumber]) => {
             firestore
-                .doc('configuration/invoice_2019')
+                .doc('configuration/invoice_2020')
                 .update({
                     number: (parseInt(invoiceNumber, 10) + 1).toString()
                 })

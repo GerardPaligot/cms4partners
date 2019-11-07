@@ -3,7 +3,7 @@ import { Workflow, WorkflowStep } from '../../workflow/workflow.service';
 import { Company } from '../../partner.service';
 
 @Component({
-    selector: 'app-validated',
+    selector: 'app-public-validated',
     templateUrl: './validated.component.html',
     styleUrls: ['./validated.component.scss']
 })

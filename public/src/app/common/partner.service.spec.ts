@@ -21,6 +21,6 @@ describe('PartnerService', () => {
         } as any);
 
         service.add({ name: 'gdg', email: [] } as any);
-        expect(add).toHaveBeenCalledWith({ name: 'gdg', email: [] });
+        expect(add).toHaveBeenCalledWith({ name: 'gdg', email: [], status: {} });
     });
 });

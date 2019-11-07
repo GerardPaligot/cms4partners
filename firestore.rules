@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /companies/{companyId} {
       allow list, update: if isGdgLille();
-      allow create: if true;
+      allow create, get: if true;
       allow get: if isOwner(companyId) || isGdgLille();
     }
     match /workflows/{workflowId} {
