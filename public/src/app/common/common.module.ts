@@ -12,11 +12,22 @@ import { MainComponent } from './step/main/main.component';
 import { ValidatedComponent } from './step/validated/validated.component';
 import { PaidComponent } from './step/paid/paid.component';
 import { AdminValidatedComponent } from './step/admin/validated/validated.component';
+import { FilledComponent as PublicFilledComponent } from './step/filled/filled.component';
 import { FilledComponent } from './step/admin/filled/filled.component';
+
 import { SocialComponent } from './step/admin/social/social.component';
 import { CommunicationComponent } from './step/admin/communication/communication.component';
 import { CommunicatedComponent } from './step/communicated/communicated.component';
 import { AddPipe } from './add.pipe';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { PartnerComponent } from './partner/partner.component';
+import { MatCardModule } from '@angular/material/card';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
     declarations: [
@@ -34,10 +45,24 @@ import { AddPipe } from './add.pipe';
         SocialComponent,
         CommunicationComponent,
         CommunicatedComponent,
-        AddPipe
+        AddPipe,
+        PublicFilledComponent,
+        PartnerComponent
     ],
-    imports: [CommonModule, ReactiveFormsModule, FormsModule],
-    exports: [FormComponent, LoaderComponent],
+    imports: [
+        MatTabsModule,
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatExpansionModule,
+        MatCardModule,
+        AngularFireAuthModule
+    ],
+    exports: [FormComponent, LoaderComponent, WorkflowComponent, InfoComponent],
     entryComponents: [
         FilledComponent,
         CommunicatedComponent,
@@ -47,7 +72,7 @@ import { AddPipe } from './add.pipe';
         ValidatedComponent,
         PaidComponent,
         AdminValidatedComponent,
-        FilledComponent
+        PublicFilledComponent
     ]
 })
 export class CommonPartnersModule {}

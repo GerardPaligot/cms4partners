@@ -29,7 +29,7 @@ import { CommunicatedComponent } from '../communicated/communicated.component';
 })
 export class MainComponent implements AfterViewInit, OnChanges {
     publicComponents = {
-        filled: FilledComponent,
+        filled: DefaultComponent,
         validated: ValidatedComponent,
         paid: PaidComponent,
         received: SocialComponent,
@@ -42,7 +42,7 @@ export class MainComponent implements AfterViewInit, OnChanges {
         sign: AdminValidatedComponent,
         paid: AdminValidatedComponent,
         received: SocialComponent,
-        communicated: CommunicatedComponent
+        communicated: CommunicationComponent
     };
 
     @Input() workflow: Workflow;
@@ -63,7 +63,10 @@ export class MainComponent implements AfterViewInit, OnChanges {
 
     private createComponent() {
         try {
-            const components = this.aauth.auth.currentUser.email.endsWith('@gdglille.org') ? this.adminCOmponent : this.publicComponents;
+            const components =
+                this.aauth.auth.currentUser && this.aauth.auth.currentUser.email.endsWith('@gdglille.org')
+                    ? this.adminCOmponent
+                    : this.publicComponents;
             this.content.clear();
             const componentFactory = this.componentFactoryResolver.resolveComponentFactory(components[this.step.key] || DefaultComponent);
             const component = this.content.createComponent(componentFactory);

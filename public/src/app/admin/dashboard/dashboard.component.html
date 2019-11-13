@@ -1,60 +1,25 @@
-<div class="tile is-ancestor">
-    <div class="tile is-vertical is-8">
-        <div class="tile">
-            <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-primary">
-                    <p class="subtitle">ESN validés</p>
-                    <p class="title">{{ summary.esnOK }}</p>
-                </article>
-                <article class="tile is-child notification is-warning">
-                    <p class="subtitle">ESN non validés</p>
-                    <p class="title">{{ summary.esnKO }}</p>
-                </article>
-            </div>
-            <div class="tile is-parent is-vertical">
-                <article class="tile is-child notification is-primary">
-                    <p class="subtitle">Autres validés</p>
-                    <p class="title">{{ summary.otherOK }}</p>
-                </article>
-                <article class="tile is-child notification is-warning">
-                    <p class="subtitle">Autres non validés</p>
-                    <p class="title">{{ summary.otherKO }}</p>
-                </article>
-            </div>
-        </div>
-    </div>
-    <div class="tile is-parent">
-        <article class="tile is-child notification is-success">
-            <div class="content">
-                <p class="subtitle">Nombre total</p>
-                <p class="title">{{ summary.total }}</p>
-            </div>
-        </article>
-    </div>
-</div>
-<table
-    class="table is-striped is-bordered is-fullwidth
-"
->
-    <thead>
-        <tr>
-            <th>Partner</th>
-            <th>Sponsoring</th>
-            <th></th>
-        </tr>
-    </thead>
+<table mat-table [dataSource]="partners" class="mat-elevation-z8 full-width">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
 
-    <tbody>
-        <tr *ngFor="let partner of partners">
-            <th>{{ partner.name }}</th>
-            <td>
-                {{ partner.sponsoring }}
-            </td>
-            <td>
-                <a class="button" [href]="'/#/admin/partner/' + partner.id">
-                    Modifier
-                </a>
-            </td>
-        </tr>
-    </tbody>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="sponsoring">
+        <th mat-header-cell *matHeaderCellDef>Sponsoring</th>
+        <td mat-cell *matCellDef="let element">{{ element.sponsoring }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+            <a class="button" [href]="'/#/admin/partner/' + element.id">
+                Modifier
+            </a>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>

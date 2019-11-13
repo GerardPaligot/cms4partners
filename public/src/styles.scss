@@ -11,3 +11,26 @@
 .tag {
     margin-right: 1em;
 }
+
+html,
+body {
+    height: 100%;
+}
+body {
+    background: #303030;
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.full-width {
+    width: 100%;
+    color: white;
+}
+
+a {
+    color: white;
+}

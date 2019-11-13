@@ -7,8 +7,8 @@
         jusqu'au {{ company.creationDate | add: 15 | date }}.
     </p>
     <ul>
-        <li><a [href]="company.conventionUrl">Convention</a></li>
+        <li><a target="_blank" rel="noreferrer" rel="noopener" [href]="company.conventionUrl">Convention</a></li>
 
-        <li><a [href]="company.devisUrl">Devis</a></li>
+        <li><a target="_blank" [href]="company.devisUrl">Devis</a></li>
     </ul>
 </ng-container>

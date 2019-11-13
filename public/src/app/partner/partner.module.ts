@@ -1,31 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { CreateComponent } from './create/create.component';
 import { CommonPartnersModule } from '../common/common.module';
 import { RouterModule, Routes } from '@angular/router';
-import { FaqComponent } from '../common/faq/faq.component';
-import { InfoComponent } from '../common/info/info.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { PartnerComponent } from './partner.component';
-import { WorkflowComponent } from '../common/workflow/workflow.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { PartnerComponent } from '../common/partner/partner.component';
+import { FormComponent } from '../common/form/form.component';
 
 const routes: Routes = [
-    { path: '', component: CreateComponent },
+    { path: '', component: FormComponent },
     {
         path: 'partner/:id',
-        component: PartnerComponent,
-        children: [
-            { path: 'workflow', component: WorkflowComponent },
-            { path: 'infos', component: InfoComponent },
-            { path: '**', redirectTo: 'workflow' }
-        ]
+        component: PartnerComponent
     }
 ];
 
 @NgModule({
-    declarations: [CreateComponent, NavigationComponent, PartnerComponent],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 
-    imports: [CommonModule, CommonPartnersModule, RouterModule.forChild(routes)]
+    imports: [MatTabsModule, MatCardModule, CommonModule, CommonPartnersModule, RouterModule.forChild(routes)]
 })
 export class PartnerModule {}

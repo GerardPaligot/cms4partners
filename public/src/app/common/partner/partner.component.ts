@@ -13,6 +13,7 @@ import { startWith, switchMap } from 'rxjs/operators';
 export class PartnerComponent implements OnInit {
     partner$: Observable<Company>;
     isLoading: boolean;
+    partner: Company;
     constructor(private partnerService: PartnerService, private route: ActivatedRoute, private partnerStore: PartnerStore) {
         this.isLoading = true;
     }
@@ -27,17 +28,10 @@ export class PartnerComponent implements OnInit {
             )
             .subscribe((partner: Company) => {
                 this.partnerStore.broadcastPartner(partner);
+                this.partner = partner;
                 this.isLoading = false;
             });
     }
 
     onSubmit(company: Company) {}
-
-    validate() {
-        // this.partnerService.update(this.route.snapshot.paramMap.get('id'), {
-        //     status: {
-        //         validated: true
-        //     }
-        // });
-    }
 }

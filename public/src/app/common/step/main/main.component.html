@@ -1,12 +1,16 @@
-<div class="timeline-item" [ngClass]="[step.state]">
-    <div class="timeline-marker is-emoji" [ngClass]="[step.class]">{{ step.icon }}</div>
-    <div class="timeline-content">
-        <h2 class="heading">
-            <span *ngIf="step.state === 'done'" class="tag is-success">Validé</span>
-            <span *ngIf="step.state === 'pending'" class="tag is-warning">En attente</span>{{ step.title }}
-        </h2>
-        <div class="description">
+<mat-accordion>
+    <mat-expansion-panel [disabled]="step.state !== 'done' && step.state !== 'pending'" [expanded]="step.state === 'pending'">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ step.icon }}
+                {{ step.title }}
+                <ng-container *ngIf="step.state === 'done'"> - validé</ng-container>
+                <ng-container *ngIf="step.state === 'pending'"> - en attente</ng-container>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div>
             <ng-container #content> </ng-container>
         </div>
-    </div>
-</div>
+    </mat-expansion-panel>
+</mat-accordion>

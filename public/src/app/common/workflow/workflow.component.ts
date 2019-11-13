@@ -19,7 +19,7 @@ export class WorkflowComponent implements OnInit {
     constructor(private route: ActivatedRoute, private workflowService: WorkflowService, private partnerStore: PartnerStore) {}
 
     ngOnInit() {
-        this.id = this.route.parent.snapshot.paramMap.get('id');
+        this.id = this.route.snapshot.paramMap.get('id');
 
         this.workflowService
             .getAll()

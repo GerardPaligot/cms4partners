@@ -1,7 +1,12 @@
-<textarea [(ngModel)]="company.twitter" class="textarea" placeholder="Message Twitter"></textarea>
+<mat-form-field class="full-width">
+    <textarea [(ngModel)]="company.twitter" matInput placeholder="Message Twitter"></textarea>
+</mat-form-field>
+<mat-form-field class="full-width">
+    <textarea [(ngModel)]="company.facebook" matInput placeholder="Message Facebook"></textarea>
+</mat-form-field>
 
-<textarea [(ngModel)]="company.facebook" class="textarea" placeholder="Message Facebook"></textarea>
+<mat-form-field class="full-width">
+    <textarea [(ngModel)]="company.linkedin" matInput placeholder="Message LinkedIN"></textarea>
+</mat-form-field>
 
-<textarea [(ngModel)]="company.linkedin" class="textarea" placeholder="Message LinkedIN"></textarea>
-
-<button class="button is-success" (click)="update()">Valider</button>
+<button mat-button (click)="update()">Valider</button>

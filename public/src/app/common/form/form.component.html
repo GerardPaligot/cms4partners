@@ -1,98 +1,55 @@
 <form [formGroup]="companyProfile" (ngSubmit)="onSubmitForm()">
-    <div class="field">
-        <label class="label"
-            >Nom de la Société
-            <div class="control">
-                <input class="input" type="text" formControlName="name" /></div
-        ></label>
-    </div>
-    <div class="field">
-        <label class="label"
-            >Emails des contacts (séparés par des ',')
-            <div class="control">
-                <input class="input" type="email" formControlName="email" />
-            </div>
-        </label>
-    </div>
-    <div class="field">
-        <label class="label"
-            >Adresse
-            <div class="control">
-                <input class="input" type="text" formControlName="address" /></div
-        ></label>
-    </div>
-    <div class="field">
-        <label class="label"
-            >Code Postal
-            <div class="control">
-                <input class="input" type="text" formControlName="zipCode" /></div
-        ></label>
-    </div>
-    <div class="field">
-        <label class="label"
-            >Ville
-            <div class="control">
-                <input class="input" type="text" formControlName="city" /></div
-        ></label>
-    </div>
-    <div class="field">
-        <label class="label"
-            >SIRET
-            <div class="control">
-                <input class="input" type="text" formControlName="siret" /></div
-        ></label>
-    </div>
-    <div class="field">
-        <label class="label"
-            >Représentant
-            <div class="control">
-                <input class="input" type="text" formControlName="representant" />
-            </div>
-        </label>
-    </div>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Nom de la Société" type="text" formControlName="name" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Emails des contacts (séparés par des ',')" type="text" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Adresse" type="text" formControlName="address" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Code Postal" type="text" formControlName="zipCode" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Ville" type="text" formControlName="city" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="SIRET" type="text" formControlName="siret" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Représentant" type="text" formControlName="representant" />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Role dans l'entreprise" type="text" formControlName="role" />
+    </mat-form-field>
 
-    <div class="field">
-        <label class="label"
-            >Role dans l'entreprise
-            <div class="control">
-                <input class="input" type="text" formControlName="role" />
-            </div>
-        </label>
-    </div>
-    <div class="field">
-        <label class="label" for="sponsoring">Partenariat</label>
-        <div class="select control">
-            <select formControlName="sponsoring" id="sponsoring" class="input">
-                <option>Gold</option>
-                <option>Silver</option>
-                <option>Bronze</option>
-            </select>
-        </div>
-    </div>
-    <div class="field">
-        <label class="label" for="sponsoring">Partenariat de second choix</label>
-        <div class="select control">
-            <select formControlName="secondSponsoring" id="sponsoring" class="input">
-                <option>Gold</option>
-                <option>Silver</option>
-                <option>Bronze</option>
-            </select>
-        </div>
-    </div>
-    <div class="field">
-        <label class="label" for="lang">Langue préférée</label>
-        <div class="select control">
-            <select formControlName="lang" id="lang" class="input">
-                <option value="fr">Française</option>
-                <option value="en">Anglaise</option>
-            </select>
-        </div>
-    </div>
-    <div class="field is-grouped">
-        <div class="control">
-            <button [disabled]="!companyProfile.valid" class="button is-link">
-                Submit
-            </button>
-        </div>
-    </div>
+    <mat-form-field class="full-width">
+        <mat-label>Partenariat</mat-label>
+        <select matNativeControl required formControlName="sponsoring">
+            <option>Gold</option>
+            <option>Silver</option>
+            <option>Bronze</option>
+        </select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Partenariat de second choix</mat-label>
+        <select matNativeControl required formControlName="secondSponsoring">
+            <option>Gold</option>
+            <option>Silver</option>
+            <option>Bronze</option>
+        </select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+        <mat-label>Langue préférée</mat-label>
+        <select matNativeControl required formControlName="lang">
+            <option value="fr">Française</option>
+            <option value="en">Anglaise</option>
+        </select>
+    </mat-form-field>
+
+    <button [disabled]="!companyProfile.valid" mat-button color="accent">
+        Submit
+    </button>
 </form>
