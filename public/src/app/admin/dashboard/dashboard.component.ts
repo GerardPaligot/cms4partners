@@ -6,15 +6,12 @@ import { PartnerService, Company } from 'src/app/common/partner.service';
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
     displayedColumns: string[] = ['name', 'sponsoring', 'action'];
     partners: Company[];
-    summary: { esnOK?: number; esnKO?: number; otherOK?: number; otherKO?: number; total?: number } = {};
     constructor(private partnerService: PartnerService) {
         this.partnerService.getAll().subscribe(partners => {
             this.partners = partners;
         });
     }
-
-    ngOnInit() {}
 }
