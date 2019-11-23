@@ -1,43 +1,19 @@
-<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-            <img src="assets/img/gdg.png" />
-            GDG LILLE
-            <br />
-            PARTNERS
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>CMS4Partners - Devfest Lille</span>
+        <span class="example-spacer"></span>
+        <a *ngIf="isLoggedIn" href="/#/admin">
+            Administration
         </a>
-    </div>
+        <button *ngIf="!isLoggedIn" (click)="login()" mat-button>
+            Log in
+        </button>
+        <button *ngIf="isLoggedIn" (click)="logout()" mat-button>
+            Log out
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a *ngIf="isLoggedIn" class="navbar-item" href="/#/admin">
-                Administration
-            </a>
-        </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <button *ngIf="!isLoggedIn" (click)="login()" class="button is-light">
-                        Log in
-                    </button>
-                    <button *ngIf="isLoggedIn" (click)="logout()" class="button is-light">
-                        Log out
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-<!-- 
-<div class="container">
-    <div class="columns">
-        <div class="column is-12"></div>
-    </div>
-</div> -->
-
-<section class="hero">
-    <div class="hero-body">
-        <router-outlet></router-outlet>
-    </div>
+<section class="container">
+    <router-outlet></router-outlet>
 </section>

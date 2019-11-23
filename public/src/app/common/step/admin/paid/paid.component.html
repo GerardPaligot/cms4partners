@@ -1,0 +1,7 @@
+<label class="full-width" for="file">Facture (*.pdf)s: <input type="file" (change)="uploadInvoice($event)" accept=".pdf" /> </label>
+
+<app-files *ngIf="company.invoiceUrl" [files]="files"></app-files>
+
+<mat-action-row *ngIf="company.status[step.key] !== 'done'">
+    <button mat-button (click)="setDone()">Valider cette étape</button>
+</mat-action-row>

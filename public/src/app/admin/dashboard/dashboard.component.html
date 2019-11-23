@@ -1,26 +1,25 @@
-<table
-    class="table is-striped is-bordered is-fullwidth
-"
->
-    <thead>
-        <tr>
-            <th>Partner</th>
-            <th>Sponsoring</th>
-            <th></th>
-        </tr>
-    </thead>
+<table mat-table [dataSource]="partners" class="mat-elevation-z8 full-width">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
 
-    <tbody>
-        <tr *ngFor="let partner of partners | async">
-            <th>{{ partner.name }}</th>
-            <td>
-                {{ partner.sponsoring }}
-            </td>
-            <td>
-                <a class="button" [href]="'/#/admin/partner/' + partner.id">
-                    Modifier
-                </a>
-            </td>
-        </tr>
-    </tbody>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="sponsoring">
+        <th mat-header-cell *matHeaderCellDef>Sponsoring</th>
+        <td mat-cell *matCellDef="let element">{{ element.sponsoring }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+            <a class="button" [href]="'/#/admin/partner/' + element.id">
+                Modifier
+            </a>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>

@@ -1,0 +1,17 @@
+<label *ngIf="!company.logoUrl" class="full-width" for="file"
+    >Logo (*.png, *.svg)": <input type="file" (change)="upload($event)" placeholder="Logo (*.png, *.svg)" accept=".png,.svg" />
+</label>
+<mat-form-field class="full-width">
+    <textarea [(ngModel)]="company.twitter" matInput placeholder="Message Twitter"></textarea>
+</mat-form-field>
+<mat-form-field class="full-width">
+    <textarea [(ngModel)]="company.facebook" matInput placeholder="Message Facebook"></textarea>
+</mat-form-field>
+
+<mat-form-field class="full-width">
+    <textarea [(ngModel)]="company.linkedin" matInput placeholder="Message LinkedIN"></textarea>
+</mat-form-field>
+
+<app-files [files]="files"></app-files>
+
+<button color="primary" mat-button (click)="update()">Sauvegarder</button>

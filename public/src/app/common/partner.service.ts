@@ -1,29 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { WorkflowStatus } from './workflow/workflow.service';
-export interface Company {
-    id?: string;
-    name: string;
-    address: string;
-    zipCode: string;
-    city: string;
-    siret: string;
-    representant: string;
-    email: string | string[];
-    role: string;
-    sponsoring: string;
-    lang: string;
-    status?: WorkflowStatus;
-}
-
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Company } from './Company';
 @Injectable({
     providedIn: 'root'
 })
 export class PartnerService {
     companiesCollectionRef: AngularFirestoreCollection<Company>;
-    constructor(private db: AngularFirestore) {
+    updateFlag: Subject<boolean> = new BehaviorSubject(true);
+    constructor(private db: AngularFirestore, private afStorage: AngularFireStorage) {
         this.companiesCollectionRef = this.db.collection<Company>('companies');
     }
 
@@ -31,11 +18,13 @@ export class PartnerService {
         const emails = Array.isArray(company.email) ? company.email : company.email.split(',');
         return this.companiesCollectionRef.add({
             ...company,
+            status: {},
             email: emails
         });
     }
 
     public update(id: string, fields: Partial<Company>) {
+        this.updateFlag.next();
         return this.companiesCollectionRef.doc(id).update(fields);
     }
 
@@ -56,7 +45,6 @@ export class PartnerService {
     public getAll(): Observable<Company[]> {
         return this.companiesCollectionRef.snapshotChanges().pipe(
             map(actions => {
-                console.log(actions);
                 return actions.map(a => {
                     const company = a.payload.doc.data() as Company;
                     const id = a.payload.doc.id;
@@ -67,4 +55,19 @@ export class PartnerService {
     }
 
     public delete(id: string) {}
+
+    public uploadFile(id, file, property = 'logoUrl', bucket = 'logo') {
+        const randomId = Math.random()
+            .toString(36)
+            .substring(2);
+
+        const ref = this.afStorage.ref(`${bucket}/${id}`);
+        ref.put(file)
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                this.update(id, {
+                    [property]: url
+                });
+            });
+    }
 }

@@ -1,28 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PartnerComponent } from './partner/partner.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonPartnersModule } from '../common/common.module';
-import { InfoComponent } from './info/info.component';
-import { WorkflowComponent } from '../common/workflow/workflow.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { PartnerComponent } from '../common/partner/partner.component';
+import { MatTableModule } from '@angular/material/table';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent },
     {
         path: 'partner/:id',
-        component: PartnerComponent,
-        children: [
-            { path: 'workflow', component: WorkflowComponent },
-            { path: 'infos', component: InfoComponent },
-            { path: '**', redirectTo: 'workflow' }
-        ]
+        component: PartnerComponent
     }
 ];
 
 @NgModule({
-    declarations: [DashboardComponent, PartnerComponent, InfoComponent],
-    imports: [CommonModule, CommonPartnersModule, RouterModule.forChild(routes)],
+    declarations: [DashboardComponent],
+    imports: [MatTableModule, MatTabsModule, CommonModule, CommonPartnersModule, RouterModule.forChild(routes)],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
 })
 export class AdminModule {}

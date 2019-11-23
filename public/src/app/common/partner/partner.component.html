@@ -1,0 +1,13 @@
+<ng-container *ngIf="isLoading">
+    <app-loader></app-loader>
+</ng-container>
+
+<ng-container *ngIf="!isLoading">
+    <h2>{{ partner.name }} - Suivi du Partenariat</h2>
+    <p>Espace partenaire: Tout ce que vous avez besoin dans <strong>un même outils</strong> 👌</p>
+
+    <mat-tab-group *ngIf="!isLoading">
+        <mat-tab label="Avancement"> <app-workflow></app-workflow> </mat-tab>
+        <mat-tab *ngIf="isAdmin" label="Mes Informations"> <app-info></app-info> </mat-tab>
+    </mat-tab-group>
+</ng-container>

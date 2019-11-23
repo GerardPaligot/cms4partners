@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Company } from '../partner.service';
+import { Company } from '../Company';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -22,8 +22,12 @@ export class FormComponent implements OnInit {
         email: '',
         role: '',
         sponsoring: '',
+        secondSponsoring: '',
         lang: '',
-        status: {}
+        status: {},
+        devisUrl: '',
+        conventionUrl: '',
+        invoiceUrl: ''
     };
 
     @Input()
@@ -38,6 +42,7 @@ export class FormComponent implements OnInit {
         this.initFormGroup(this.defaultCompany);
 
         this.company.subscribe(c => {
+            console.log(c);
             this.initFormGroup(c);
         });
     }
@@ -53,6 +58,7 @@ export class FormComponent implements OnInit {
             email: new FormControl({ value: company.email, disabled: this.readOnly }, [Validators.required]),
             role: new FormControl({ value: company.role, disabled: this.readOnly }, [Validators.required]),
             sponsoring: new FormControl({ value: company.sponsoring, disabled: this.readOnly }, [Validators.required]),
+            secondSponsoring: new FormControl({ value: company.secondSponsoring, disabled: this.readOnly }),
             lang: new FormControl({ value: company.lang, disabled: this.readOnly }, [Validators.required])
         });
     }

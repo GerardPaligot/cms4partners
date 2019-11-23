@@ -1,0 +1,11 @@
+<p *ngIf="company.status.communicated === 'pending'">
+    L'équipe du Devfest Lille est en train de programmer la communication sur les réseaux sociaux.
+    <ng-container *ngIf="company.publicationDate"
+        >La date de publication est prévue pour le {{ company.publicationDate | date }}</ng-container
+    >
+</p>
+<p *ngIf="company.status.communicated === 'done'">
+    L'èquipe du Devfest Lille a publié la communication sur les réseaux sociaux le {{ company.publicationDate | date }}
+</p>
+
+<app-files *ngIf="company.flyerUrl" [files]="files"></app-files>
