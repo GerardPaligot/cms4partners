@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { WorkflowStep, WorkflowService, Workflow } from './workflow.service';
 import { PartnerStore } from 'src/app/partner/partner.store';
-import { Company } from '../partner.service';
+import { Company } from '../Company';
 import { tap, switchMap } from 'rxjs/operators';
 
 @Component({

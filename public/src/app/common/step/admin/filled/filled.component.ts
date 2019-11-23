@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Company, PartnerService } from 'src/app/common/partner.service';
+import { PartnerService } from 'src/app/common/partner.service';
+import { Company } from 'src/app/common/Company';
+import { WorkflowStep } from 'src/app/common/workflow/workflow.service';
 
 @Component({
     selector: 'app-admin-filled',
@@ -9,6 +11,8 @@ import { Company, PartnerService } from 'src/app/common/partner.service';
 export class FilledComponent implements OnInit {
     @Input() company: Company;
     @Input() id: string;
+    @Input() step: WorkflowStep;
+
     constructor(private partnerService: PartnerService) {}
 
     ngOnInit() {}

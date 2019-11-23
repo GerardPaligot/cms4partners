@@ -7,4 +7,5 @@
 <p *ngIf="company.status.communicated === 'done'">
     L'èquipe du Devfest Lille a publié la communication sur les réseaux sociaux le {{ company.publicationDate | date }}
 </p>
-<p *ngIf="company.flyerUrl">Vous pouvez télécharger et réutiliser <a [href]="company.flyerUrl">le flyer</a> que nous avons créer</p>
+
+<app-files *ngIf="company.flyerUrl" [files]="files"></app-files>

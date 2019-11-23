@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -21,6 +22,7 @@ registerLocaleData(localeFr, 'fr');
         BrowserModule,
         AppRoutingModule,
         AngularFireAuthModule,
+        AngularFireStorageModule,
         AngularFireModule.initializeApp(environment.firebase, 'CMS4Partners'),
         AngularFirestoreModule,
         BrowserAnimationsModule,

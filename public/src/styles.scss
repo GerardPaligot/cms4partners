@@ -17,9 +17,9 @@ body {
     height: 100%;
 }
 body {
-    background: #303030;
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
+    background-color: #efefef;
 }
 
 .example-spacer {
@@ -28,9 +28,8 @@ body {
 
 .full-width {
     width: 100%;
-    color: white;
 }
 
-a {
-    color: white;
+mat-card {
+    margin-bottom: 1em;
 }

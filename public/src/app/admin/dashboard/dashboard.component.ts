@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PartnerService, Company } from 'src/app/common/partner.service';
+import { PartnerService } from 'src/app/common/partner.service';
+import { Company } from 'src/app/common/Company';
 
 @Component({
     selector: 'app-dashboard',

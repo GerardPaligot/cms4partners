@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Company } from '../../partner.service';
+import { Company } from '../../Company';
+import { WorkflowStep } from '../../workflow/workflow.service';
 
 @Component({
     selector: 'app-communicated',
@@ -8,8 +9,13 @@ import { Company } from '../../partner.service';
 })
 export class CommunicatedComponent implements OnInit {
     @Input() company: Company;
+    @Input() step: WorkflowStep;
 
-    constructor() {}
+    files = {};
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.files = {
+            Flyer: this.company.flyerUrl
+        };
+    }
 }

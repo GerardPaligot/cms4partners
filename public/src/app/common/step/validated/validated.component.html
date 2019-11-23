@@ -6,9 +6,6 @@
         contrat soit en retour de ce mail, soit en le transférant sur ce site cms4devfest. Ce pack {{ company.sponsoring }} vous est reservé
         jusqu'au {{ company.creationDate | add: 15 | date }}.
     </p>
-    <ul>
-        <li><a target="_blank" rel="noreferrer" rel="noopener" [href]="company.conventionUrl">Convention</a></li>
 
-        <li><a target="_blank" [href]="company.devisUrl">Devis</a></li>
-    </ul>
+    <app-files [files]="files"></app-files>
 </ng-container>

@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PartnerService, Company } from 'src/app/common/partner.service';
+import { PartnerService } from 'src/app/common/partner.service';
+import { Company } from 'src/app/common/Company';
 import { Workflow, WorkflowStep, State } from 'src/app/common/workflow/workflow.service';
 
 @Component({
-    selector: 'app-admin-validated',
-    templateUrl: './validated.component.html',
-    styleUrls: ['./validated.component.scss']
+    selector: 'app-admin-default',
+    templateUrl: './default.component.html',
+    styleUrls: ['./default.component.scss']
 })
-export class AdminValidatedComponent implements OnInit {
+export class AdminDefaultComponent implements OnInit {
     @Input() workflow: Workflow;
     @Input() step: WorkflowStep;
     @Input() company: Company;

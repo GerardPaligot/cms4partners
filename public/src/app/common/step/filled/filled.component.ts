@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Company } from '../../partner.service';
+import { Company } from '../../Company';
+import { WorkflowStep } from '../../workflow/workflow.service';
 
 @Component({
     selector: 'app-public-filled',
@@ -9,6 +10,7 @@ import { Company } from '../../partner.service';
 export class FilledComponent implements OnInit {
     @Input() company: Company;
     @Input() id: string;
+    @Input() step: WorkflowStep;
     constructor() {}
 
     ngOnInit() {}

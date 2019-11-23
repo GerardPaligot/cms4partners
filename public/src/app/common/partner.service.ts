@@ -2,40 +2,15 @@ import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { WorkflowStatus } from './workflow/workflow.service';
-export interface Company {
-    id?: string;
-    name: string;
-    address: string;
-    zipCode: string;
-    city: string;
-    siret: string;
-    representant: string;
-    email: string | string[];
-    role: string;
-    sponsoring: string;
-    secondSponsoring?: string;
-    lang: string;
-    status?: WorkflowStatus;
-    devisUrl: string;
-    conventionUrl: string;
-    invoiceUrl: string;
-    type?: 'esn' | 'other';
-    facebook?: string;
-    twitter?: string;
-    linkedin?: string;
-    publicationDate?: Date;
-    flyerUrl?: string;
-    creationDate?: Date;
-}
-
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Company } from './Company';
 @Injectable({
     providedIn: 'root'
 })
 export class PartnerService {
     companiesCollectionRef: AngularFirestoreCollection<Company>;
     updateFlag: Subject<boolean> = new BehaviorSubject(true);
-    constructor(private db: AngularFirestore) {
+    constructor(private db: AngularFirestore, private afStorage: AngularFireStorage) {
         this.companiesCollectionRef = this.db.collection<Company>('companies');
     }
 
@@ -80,4 +55,19 @@ export class PartnerService {
     }
 
     public delete(id: string) {}
+
+    public uploadFile(id, file, property = 'logoUrl', bucket = 'logo') {
+        const randomId = Math.random()
+            .toString(36)
+            .substring(2);
+
+        const ref = this.afStorage.ref(`${bucket}/${id}`);
+        ref.put(file)
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                this.update(id, {
+                    [property]: url
+                });
+            });
+    }
 }

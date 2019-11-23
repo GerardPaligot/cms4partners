@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Company } from '../partner.service';
+import { Company } from '../Company';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -42,6 +42,7 @@ export class FormComponent implements OnInit {
         this.initFormGroup(this.defaultCompany);
 
         this.company.subscribe(c => {
+            console.log(c);
             this.initFormGroup(c);
         });
     }

@@ -1,0 +1,5 @@
+<label *ngIf="!company.conventionSignedUrl" class="full-width" for="file"
+    >Convention (*.pdf)s: <input type="file" (change)="uploadConvention($event)" accept=".pdf" />
+</label>
+
+<app-files [files]="files"></app-files>

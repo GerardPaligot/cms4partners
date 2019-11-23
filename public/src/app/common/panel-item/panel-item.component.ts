@@ -1,54 +1,56 @@
 import {
     Component,
-    AfterViewInit,
     OnInit,
-    Input,
     ViewChild,
-    ElementRef,
-    ComponentFactoryResolver,
     ViewContainerRef,
+    AfterViewInit,
     OnChanges,
-    SimpleChanges
+    SimpleChanges,
+    ComponentFactoryResolver,
+    Input
 } from '@angular/core';
-import { Workflow, WorkflowStep } from '../../workflow/workflow.service';
-import { DefaultComponent } from '../default/default.component';
-import { ValidatedComponent } from '../validated/validated.component';
-import { PaidComponent } from '../paid/paid.component';
-import { Company } from '../../partner.service';
-import { AdminValidatedComponent } from '../admin/validated/validated.component';
+import { DefaultComponent } from '../step/default/default.component';
+import { ValidatedComponent } from '../step/validated/validated.component';
+import { PaidComponent } from '../step/paid/paid.component';
+import { SocialComponent } from '../step/admin/social/social.component';
+import { CommunicatedComponent } from '../step/communicated/communicated.component';
+import { SignedComponent } from '../step/signed/signed.component';
+import { FilledComponent } from '../step/admin/filled/filled.component';
+import { AdminValidationComponent } from '../step/admin/validation/validation.component';
+import { AdminSignedComponent } from '../step/admin/signed/signed.component';
+import { AdminPaidComponent } from '../step/admin/paid/paid.component';
+import { CommunicationComponent } from '../step/admin/communication/communication.component';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FilledComponent } from '../admin/filled/filled.component';
-import { SocialComponent } from '../admin/social/social.component';
-import { CommunicationComponent } from '../admin/communication/communication.component';
-import { CommunicatedComponent } from '../communicated/communicated.component';
+import { WorkflowStep } from '../workflow/workflow.service';
+import { Company } from '../Company';
 
 @Component({
-    selector: 'app-main-step',
-    templateUrl: './main.component.html',
-    styleUrls: ['./main.component.scss']
+    selector: 'app-panel-item',
+    templateUrl: './panel-item.component.html',
+    styleUrls: ['./panel-item.component.scss']
 })
-export class MainComponent implements AfterViewInit, OnChanges {
+export class PanelItemComponent implements AfterViewInit, OnChanges {
+    @Input() step: WorkflowStep;
+    @Input() company: Company;
+    @Input() id: string;
+
     publicComponents = {
         filled: DefaultComponent,
         validated: ValidatedComponent,
         paid: PaidComponent,
         received: SocialComponent,
-        communicated: CommunicatedComponent
+        communicated: CommunicatedComponent,
+        sign: SignedComponent
     };
 
     adminCOmponent = {
         filled: FilledComponent,
-        validated: AdminValidatedComponent,
-        sign: AdminValidatedComponent,
-        paid: AdminValidatedComponent,
+        validated: AdminValidationComponent,
+        sign: AdminSignedComponent,
+        paid: AdminPaidComponent,
         received: SocialComponent,
         communicated: CommunicationComponent
     };
-
-    @Input() workflow: Workflow;
-    @Input() step: WorkflowStep;
-    @Input() company: Company;
-    @Input() id: string;
 
     @ViewChild('content', { read: ViewContainerRef, static: false })
     public content: ViewContainerRef;
