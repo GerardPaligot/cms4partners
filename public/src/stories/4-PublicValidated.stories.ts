@@ -1,13 +1,18 @@
 import { PartnerService } from '../app/common/partner.service';
 import { ValidatedComponent } from 'src/app/common/step/validated/validated.component';
 import { AddPipe } from 'src/app/common/add.pipe';
+import { FilesComponent } from 'src/app/common/files/files.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { firestore } from 'firebase';
 
 export default {
     title: 'Public / Validated'
 };
 
 const moduleMetadata = {
-    declarations: [ValidatedComponent, AddPipe],
+    declarations: [ValidatedComponent, AddPipe, FilesComponent],
+    imports: [MatIconModule, MatListModule],
     providers: [
         {
             provide: PartnerService,
@@ -43,12 +48,12 @@ export const stepDone = () => ({
             status: {
                 validated: 'done'
             },
-            creationDate: new Date(),
+            creationDate: firestore.Timestamp.fromDate(new Date()),
             devisUrl: 'https://devisUrl.com',
             conventionUrl: 'https://conventionUrl.com'
         },
         step: {
-            description: 'This is a description'
+            description: 'Ceci est la description de la step'
         }
     },
     moduleMetadata

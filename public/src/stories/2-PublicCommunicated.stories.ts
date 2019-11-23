@@ -1,9 +1,16 @@
 import { CommunicatedComponent } from 'src/app/common/step/communicated/communicated.component';
+import { FilesComponent } from 'src/app/common/files/files.component';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 export default {
     title: 'Public / Communicated'
 };
 
+const moduleMetadata = {
+    declarations: [CommunicatedComponent, FilesComponent],
+    imports: [MatIconModule, MatListModule]
+};
 export const pendingWithoutUrlAndDate = () => ({
     template: `<app-communicated [company]="company"></app-communicated>`,
 
@@ -14,9 +21,7 @@ export const pendingWithoutUrlAndDate = () => ({
             }
         }
     },
-    moduleMetadata: {
-        declarations: [CommunicatedComponent]
-    }
+    moduleMetadata
 });
 
 export const pendingWithUrlAndDate = () => ({
@@ -31,9 +36,7 @@ export const pendingWithUrlAndDate = () => ({
             flyerUrl: 'http://google.com'
         }
     },
-    moduleMetadata: {
-        declarations: [CommunicatedComponent]
-    }
+    moduleMetadata
 });
 
 export const pendingWithUrlAndWithoutDate = () => ({
@@ -47,9 +50,7 @@ export const pendingWithUrlAndWithoutDate = () => ({
             flyerUrl: 'http://google.com'
         }
     },
-    moduleMetadata: {
-        declarations: [CommunicatedComponent]
-    }
+    moduleMetadata
 });
 
 export const pendingWithDateAndWithoutUrl = () => ({
@@ -63,9 +64,7 @@ export const pendingWithDateAndWithoutUrl = () => ({
             publicationDate: new Date()
         }
     },
-    moduleMetadata: {
-        declarations: [CommunicatedComponent]
-    }
+    moduleMetadata
 });
 
 export const done = () => ({
@@ -80,7 +79,5 @@ export const done = () => ({
             flyerUrl: 'http://google.com'
         }
     },
-    moduleMetadata: {
-        declarations: [CommunicatedComponent]
-    }
+    moduleMetadata
 });
