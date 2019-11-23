@@ -58,3 +58,17 @@ export const partnershipUpdated = functions.firestore.document('companies/{compa
         ...update
     });
 });
+
+exports.updateConventionSignedUrlProperty = functions.storage.object().onFinalize(async object => {
+    const name = object.name || '';
+    return admin
+        .storage()
+        .bucket()
+        .file(name)
+        .getSignedUrl({ action: 'read', expires: '03-17-2025' })
+        .then(([url]) => {
+            return firestore.doc('companies/' + name.replace('signed/', '')).update({
+                conventionSignedUrl: url
+            });
+        });
+});
