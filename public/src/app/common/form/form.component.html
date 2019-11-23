@@ -1,55 +1,57 @@
-<form [formGroup]="companyProfile" (ngSubmit)="onSubmitForm()">
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Nom de la Société" type="text" formControlName="name" />
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Emails des contacts (séparés par des ',')" type="text" formControlName="email" />
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Adresse" type="text" formControlName="address" />
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Code Postal" type="text" formControlName="zipCode" />
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Ville" type="text" formControlName="city" />
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <input matInput placeholder="SIRET" type="text" formControlName="siret" />
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Représentant" type="text" formControlName="representant" />
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <input matInput placeholder="Role dans l'entreprise" type="text" formControlName="role" />
-    </mat-form-field>
+<mat-card
+    ><form [formGroup]="companyProfile" (ngSubmit)="onSubmitForm()">
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Nom de la Société" type="text" formControlName="name" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Emails des contacts (séparés par des ',')" type="text" formControlName="email" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Adresse" type="text" formControlName="address" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Code Postal" type="text" formControlName="zipCode" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Ville" type="text" formControlName="city" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="SIRET" type="text" formControlName="siret" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Représentant" type="text" formControlName="representant" />
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Role dans l'entreprise" type="text" formControlName="role" />
+        </mat-form-field>
 
-    <mat-form-field class="full-width">
-        <mat-label>Partenariat</mat-label>
-        <select matNativeControl required formControlName="sponsoring">
-            <option>Gold</option>
-            <option>Silver</option>
-            <option>Bronze</option>
-        </select>
-    </mat-form-field>
-    <mat-form-field class="full-width">
-        <mat-label>Partenariat de second choix</mat-label>
-        <select matNativeControl required formControlName="secondSponsoring">
-            <option>Gold</option>
-            <option>Silver</option>
-            <option>Bronze</option>
-        </select>
-    </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Partenariat</mat-label>
+            <select matNativeControl required formControlName="sponsoring">
+                <option>Gold</option>
+                <option>Silver</option>
+                <option>Bronze</option>
+            </select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Partenariat de second choix</mat-label>
+            <select matNativeControl required formControlName="secondSponsoring">
+                <option>Gold</option>
+                <option>Silver</option>
+                <option>Bronze</option>
+            </select>
+        </mat-form-field>
 
-    <mat-form-field class="full-width">
-        <mat-label>Langue préférée</mat-label>
-        <select matNativeControl required formControlName="lang">
-            <option value="fr">Française</option>
-            <option value="en">Anglaise</option>
-        </select>
-    </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Langue préférée</mat-label>
+            <select matNativeControl required formControlName="lang">
+                <option value="fr">Française</option>
+                <option value="en">Anglaise</option>
+            </select>
+        </mat-form-field>
 
-    <button [disabled]="!companyProfile.valid" mat-button color="primary">
-        Submit
-    </button>
-</form>
+        <button [disabled]="!companyProfile.valid" mat-button color="primary">
+            Submit
+        </button>
+    </form>
+</mat-card>
