@@ -30,7 +30,7 @@ function sendWelcomeEmail(emails: string[], id: string) {
 
 export const newPartner = functions.firestore.document('companies/{companyId}').onCreate((snap, context) => {
     const company = snap.data() || {};
-
+    const id = snap.id;
     return sendWelcomeEmail(company.email, snap.id)
         .then(() => {
             return sendEmail(
@@ -40,6 +40,15 @@ export const newPartner = functions.firestore.document('companies/{companyId}').
             La société ${company.name} souhaite devenir partenaire ${company.sponsoring}
         `
             );
+        })
+        .then(() => {
+            return firestore.doc('companies/' + id).update({
+                ...company,
+                status: {
+                    filled: 'done',
+                    validated: 'pending'
+                }
+            });
         })
         .catch(err => console.log(err));
 });
