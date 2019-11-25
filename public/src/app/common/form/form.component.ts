@@ -2,6 +2,8 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Company } from '../Company';
 import { Observable, of } from 'rxjs';
+import { PartnerService } from '../partner.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-form',
@@ -38,11 +40,16 @@ export class FormComponent implements OnInit {
     @Output()
     public submitEvent = new EventEmitter<Company>();
 
+    update = false;
+
+    constructor(private partnerservice: PartnerService, private router: Router) {}
     ngOnInit() {
         this.initFormGroup(this.defaultCompany);
 
         this.company.subscribe(c => {
-            console.log(c);
+            this.update = c.name !== '';
+            console.log(this.update);
+
             this.initFormGroup(c);
         });
     }
@@ -63,6 +70,16 @@ export class FormComponent implements OnInit {
         });
     }
     onSubmitForm() {
-        this.submitEvent.emit(this.companyProfile.value);
+        if (this.update) {
+            this.submitEvent.emit(this.companyProfile.value);
+        } else {
+            this.partnerservice
+                .add({
+                    ...this.companyProfile.value
+                })
+                .then(doc => {
+                    this.router.navigate(['partner', doc.id]);
+                });
+        }
     }
 }

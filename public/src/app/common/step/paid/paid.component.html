@@ -1,4 +1,6 @@
-<p *ngIf="step.state !== 'done'">{{ step.description }}</p>
+<p *ngIf="step.state !== 'done'">
+    Nous sommes dans l'attente du paiement de votre part. Une fois le paiement reçu, nous pourrons finaliser notre partenariat.
+</p>
 <ng-container *ngIf="step.state === 'done'">
     <p>
         Nous avons bien reçu le contrat signé ainsi que votre paiement et nous vous remercions pour votre réactivité. Vous trouverez ci

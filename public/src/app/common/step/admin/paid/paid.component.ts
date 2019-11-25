@@ -4,7 +4,7 @@ import { PartnerService } from 'src/app/common/partner.service';
 import { Company } from 'src/app/common/Company';
 
 @Component({
-    selector: 'app-paid',
+    selector: 'app-admin-paid',
     templateUrl: './paid.component.html',
     styleUrls: ['./paid.component.scss']
 })

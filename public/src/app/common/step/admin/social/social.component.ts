@@ -4,11 +4,11 @@ import { Company } from 'src/app/common/Company';
 import { WorkflowStep } from 'src/app/common/workflow/workflow.service';
 
 @Component({
-    selector: 'app-social',
+    selector: 'app-admin-social',
     templateUrl: './social.component.html',
     styleUrls: ['./social.component.scss']
 })
-export class SocialComponent implements OnInit {
+export class AdminSocialComponent implements OnInit {
     @Input() company: Company;
     @Input() id: string;
     @Input() step: WorkflowStep;

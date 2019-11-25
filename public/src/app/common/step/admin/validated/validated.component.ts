@@ -4,11 +4,11 @@ import { PartnerService } from 'src/app/common/partner.service';
 import { Company } from 'src/app/common/Company';
 
 @Component({
-    selector: 'app-validation',
-    templateUrl: './validation.component.html',
-    styleUrls: ['./validation.component.scss']
+    selector: 'app-admin-validated',
+    templateUrl: './validated.component.html',
+    styleUrls: ['./validated.component.scss']
 })
-export class AdminValidationComponent implements OnInit {
+export class AdminValidatedComponent implements OnInit {
     @Input() workflow: Workflow;
     @Input() step: WorkflowStep;
     @Input() company: Company;

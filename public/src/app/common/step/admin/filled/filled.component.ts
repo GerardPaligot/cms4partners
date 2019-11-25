@@ -8,7 +8,7 @@ import { WorkflowStep } from 'src/app/common/workflow/workflow.service';
     templateUrl: './filled.component.html',
     styleUrls: ['./filled.component.scss']
 })
-export class FilledComponent implements OnInit {
+export class AdminFilledComponent implements OnInit {
     @Input() company: Company;
     @Input() id: string;
     @Input() step: WorkflowStep;

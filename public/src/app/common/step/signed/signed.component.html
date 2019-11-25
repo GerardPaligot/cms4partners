@@ -1,5 +1,8 @@
+<p *ngIf="company.status.sign === 'done'">
+    Vous trouverez ci-dessous la convention et le devis relatifs à notre partenariat.
+    <app-files [files]="files"></app-files>
+</p>
+
 <label *ngIf="!company.conventionSignedUrl" class="full-width" for="file"
     >Convention (*.pdf)s: <input type="file" (change)="uploadConvention($event)" accept=".pdf" />
 </label>
-
-<app-files [files]="files"></app-files>

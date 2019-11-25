@@ -4,11 +4,11 @@ import { PartnerService } from 'src/app/common/partner.service';
 import { Company } from 'src/app/common/Company';
 
 @Component({
-    selector: 'app-communication',
-    templateUrl: './communication.component.html',
-    styleUrls: ['./communication.component.scss']
+    selector: 'app-admin-communicated',
+    templateUrl: './communicated.component.html',
+    styleUrls: ['./communicated.component.scss']
 })
-export class CommunicationComponent implements OnInit {
+export class AdminCommunicatedComponent implements OnInit {
     @Input() workflow: Workflow;
     @Input() step: WorkflowStep;
     @Input() company: Company;

@@ -12,10 +12,10 @@ import { ValidatedComponent } from './step/validated/validated.component';
 import { PaidComponent } from './step/paid/paid.component';
 import { AdminDefaultComponent } from './step/admin/default/default.component';
 import { FilledComponent as PublicFilledComponent } from './step/filled/filled.component';
-import { FilledComponent } from './step/admin/filled/filled.component';
+import { AdminFilledComponent } from './step/admin/filled/filled.component';
 
-import { SocialComponent } from './step/admin/social/social.component';
-import { CommunicationComponent } from './step/admin/communication/communication.component';
+import { AdminSocialComponent } from './step/admin/social/social.component';
+import { AdminCommunicatedComponent } from './step/admin/communicated/communicated.component';
 import { CommunicatedComponent } from './step/communicated/communicated.component';
 import { AddPipe } from './add.pipe';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -32,8 +32,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { PartnerComponent } from './partner/partner.component';
 import { MatCardModule } from '@angular/material/card';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AdminValidationComponent } from './step/admin/validation/validation.component';
+import { AdminValidatedComponent } from './step/admin/validated/validated.component';
 import { AdminSignedComponent } from './step/admin/signed/signed.component';
 import { SignedComponent } from './step/signed/signed.component';
 import { AdminPaidComponent } from './step/admin/paid/paid.component';
@@ -50,14 +49,14 @@ import { FilesComponent } from './files/files.component';
         ValidatedComponent,
         PaidComponent,
         AdminDefaultComponent,
-        FilledComponent,
-        SocialComponent,
-        CommunicationComponent,
+        AdminFilledComponent,
+        AdminSocialComponent,
+        AdminCommunicatedComponent,
         CommunicatedComponent,
         AddPipe,
         PublicFilledComponent,
         PartnerComponent,
-        AdminValidationComponent,
+        AdminValidatedComponent,
         AdminSignedComponent,
         SignedComponent,
         AdminPaidComponent,
@@ -85,11 +84,11 @@ import { FilesComponent } from './files/files.component';
         AdminPaidComponent,
         SignedComponent,
         AdminSignedComponent,
-        AdminValidationComponent,
-        FilledComponent,
+        AdminValidatedComponent,
+        AdminFilledComponent,
         CommunicatedComponent,
-        CommunicationComponent,
-        SocialComponent,
+        AdminCommunicatedComponent,
+        AdminSocialComponent,
         DefaultComponent,
         ValidatedComponent,
         PaidComponent,

@@ -1,15 +1,16 @@
-import { FilledComponent } from '../app/common/step/admin/filled/filled.component';
+import { AdminFilledComponent } from '../app/common/step/admin/filled/filled.component';
 import { PartnerService } from '../app/common/partner.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 export default {
     title: 'Admin / Filled'
 };
 
 const moduleMetadata = {
-    declarations: [FilledComponent],
-    imports: [MatFormFieldModule, MatButtonModule],
+    declarations: [AdminFilledComponent],
+    imports: [MatFormFieldModule, MatButtonModule, MatInputModule],
     providers: [
         {
             provide: PartnerService,

@@ -12,17 +12,18 @@ import {
 import { DefaultComponent } from '../step/default/default.component';
 import { ValidatedComponent } from '../step/validated/validated.component';
 import { PaidComponent } from '../step/paid/paid.component';
-import { SocialComponent } from '../step/admin/social/social.component';
+import { AdminSocialComponent } from '../step/admin/social/social.component';
 import { CommunicatedComponent } from '../step/communicated/communicated.component';
 import { SignedComponent } from '../step/signed/signed.component';
-import { FilledComponent } from '../step/admin/filled/filled.component';
-import { AdminValidationComponent } from '../step/admin/validation/validation.component';
+import { AdminFilledComponent } from '../step/admin/filled/filled.component';
+import { AdminValidatedComponent } from '../step/admin/validated/validated.component';
 import { AdminSignedComponent } from '../step/admin/signed/signed.component';
 import { AdminPaidComponent } from '../step/admin/paid/paid.component';
-import { CommunicationComponent } from '../step/admin/communication/communication.component';
+import { AdminCommunicatedComponent } from '../step/admin/communicated/communicated.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { WorkflowStep } from '../workflow/workflow.service';
 import { Company } from '../Company';
+import { FilledComponent } from '../step/filled/filled.component';
 
 @Component({
     selector: 'app-panel-item',
@@ -35,21 +36,21 @@ export class PanelItemComponent implements AfterViewInit, OnChanges {
     @Input() id: string;
 
     publicComponents = {
-        filled: DefaultComponent,
+        filled: FilledComponent,
         validated: ValidatedComponent,
         paid: PaidComponent,
-        received: SocialComponent,
+        received: AdminSocialComponent,
         communicated: CommunicatedComponent,
         sign: SignedComponent
     };
 
     adminCOmponent = {
-        filled: FilledComponent,
-        validated: AdminValidationComponent,
+        filled: AdminFilledComponent,
+        validated: AdminValidatedComponent,
         sign: AdminSignedComponent,
         paid: AdminPaidComponent,
-        received: SocialComponent,
-        communicated: CommunicationComponent
+        received: AdminSocialComponent,
+        communicated: AdminCommunicatedComponent
     };
 
     @ViewChild('content', { read: ViewContainerRef, static: false })

@@ -5,10 +5,6 @@ import { onDocumentChange } from './utils/document-change';
 
 admin.initializeApp();
 const firestore = admin.firestore();
-export const helloWorldMiddleware = (request: Partial<functions.Request>, response: Pick<functions.Response, 'send'>) => {
-    response.send('Hello from Firebase!');
-};
-export const helloWorld = functions.https.onRequest(helloWorldMiddleware);
 
 function sendWelcomeEmail(emails: string[], id: string) {
     return Promise.all(
