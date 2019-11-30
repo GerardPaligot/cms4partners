@@ -2,6 +2,7 @@ import { WorkflowStatus } from './workflow/workflow.service';
 import { firestore } from 'firebase';
 export interface Company {
     id?: string;
+    tel: string;
     name: string;
     address: string;
     zipCode: string;

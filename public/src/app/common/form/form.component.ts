@@ -16,6 +16,7 @@ export class FormComponent implements OnInit {
 
     defaultCompany = {
         name: '',
+        tel: '',
         address: '',
         zipCode: '',
         city: '',
@@ -57,6 +58,7 @@ export class FormComponent implements OnInit {
     private initFormGroup(company: Company) {
         this.companyProfile = new FormGroup({
             name: new FormControl({ value: company.name, disabled: this.readOnly }, [Validators.required]),
+            tel: new FormControl({ value: company.tel, disabled: this.readOnly }, [Validators.required]),
             address: new FormControl({ value: company.address, disabled: this.readOnly }, [Validators.required]),
             zipCode: new FormControl({ value: company.zipCode, disabled: this.readOnly }, [Validators.required]),
             city: new FormControl({ value: company.city, disabled: this.readOnly }, [Validators.required]),
