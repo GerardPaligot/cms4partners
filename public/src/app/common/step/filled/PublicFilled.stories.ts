@@ -1,5 +1,5 @@
-import { FilledComponent } from '../app/common/step/filled/filled.component';
-import { PartnerService } from '../app/common/partner.service';
+import { FilledComponent } from './filled.component';
+import { PartnerService } from '../../partner.service';
 
 export default {
     title: 'Public / Filled'

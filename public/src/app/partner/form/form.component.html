@@ -1,0 +1,4 @@
+<mat-card *ngIf="submitted"
+    >Le GDG a bien pris en compte votre demande de partenariat. Nous reviendrons vers vous dans les plus brefs délais.
+</mat-card>
+<app-form (submitEvent)="createPartner($event)"></app-form>

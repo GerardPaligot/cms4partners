@@ -1,4 +1,4 @@
-import { CommunicatedComponent } from 'src/app/common/step/communicated/communicated.component';
+import { CommunicatedComponent } from './communicated.component';
 import { FilesComponent } from 'src/app/common/files/files.component';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';

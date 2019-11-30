@@ -1,5 +1,5 @@
-import { PartnerService } from '../app/common/partner.service';
-import { ValidatedComponent } from 'src/app/common/step/validated/validated.component';
+import { PartnerService } from '../../partner.service';
+import { ValidatedComponent } from './validated.component';
 import { AddPipe } from 'src/app/common/add.pipe';
 import { FilesComponent } from 'src/app/common/files/files.component';
 import { MatIconModule } from '@angular/material/icon';

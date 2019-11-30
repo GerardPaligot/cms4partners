@@ -38,6 +38,7 @@ import { SignedComponent } from './step/signed/signed.component';
 import { AdminPaidComponent } from './step/admin/paid/paid.component';
 import { PanelItemComponent } from './panel-item/panel-item.component';
 import { FilesComponent } from './files/files.component';
+import { RouterModule } from '@angular/router';
 @NgModule({
     declarations: [
         FormComponent,
@@ -77,7 +78,8 @@ import { FilesComponent } from './files/files.component';
         MatCardModule,
         AngularFireAuthModule,
         MatListModule,
-        MatToolbarModule
+        MatToolbarModule,
+        RouterModule
     ],
     exports: [FormComponent, LoaderComponent, WorkflowComponent, InfoComponent],
     entryComponents: [

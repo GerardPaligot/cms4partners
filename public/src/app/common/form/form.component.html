@@ -54,7 +54,7 @@
         </mat-form-field>
 
         <button type="submit" [disabled]="!companyProfile.valid" mat-button color="primary">
-            Submit
+            Submit <span *ngIf="submitted">✅</span>
         </button>
     </form>
 </mat-card>

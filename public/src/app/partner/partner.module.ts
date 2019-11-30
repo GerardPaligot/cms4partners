@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PartnerComponent } from '../common/partner/partner.component';
-import { FormComponent } from '../common/form/form.component';
+import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
     { path: '', component: FormComponent },
@@ -18,6 +18,8 @@ const routes: Routes = [
 @NgModule({
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 
-    imports: [MatTabsModule, MatCardModule, CommonModule, CommonPartnersModule, RouterModule.forChild(routes)]
+    imports: [MatTabsModule, MatCardModule, CommonModule, CommonPartnersModule, RouterModule.forChild(routes)],
+
+    declarations: [FormComponent]
 })
 export class PartnerModule {}

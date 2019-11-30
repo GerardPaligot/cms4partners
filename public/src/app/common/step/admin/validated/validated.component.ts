@@ -14,6 +14,8 @@ export class AdminValidatedComponent implements OnInit {
     @Input() company: Company;
     @Input() id: string;
     files = {};
+    choice = '';
+
     constructor(private partnerService: PartnerService) {}
 
     ngOnInit() {
@@ -21,6 +23,7 @@ export class AdminValidatedComponent implements OnInit {
             Convention: this.company.conventionUrl,
             Devis: this.company.devisUrl
         };
+        this.choice = this.company.sponsoring;
     }
     updateStatus(status: State) {
         this.partnerService.update(this.id, {
@@ -35,6 +38,12 @@ export class AdminValidatedComponent implements OnInit {
     }
     setDone() {
         this.updateStatus('done');
+    }
+    updateSponsoring() {
+        this.partnerService.update(this.id, {
+            sponsoring: this.choice,
+            secondSponsoring: this.choice === this.company.sponsoring ? this.company.secondSponsoring : this.company.sponsoring
+        });
     }
     uploadConvention(event) {
         this.partnerService.uploadFile(this.id, event.target.files[0], 'conventionUrl', 'convention');

@@ -41,16 +41,11 @@ export class FormComponent implements OnInit {
     @Output()
     public submitEvent = new EventEmitter<Company>();
 
-    update = false;
-
-    constructor(private partnerservice: PartnerService, private router: Router) {}
+    submitted = false;
     ngOnInit() {
         this.initFormGroup(this.defaultCompany);
 
         this.company.subscribe(c => {
-            this.update = c.name !== '';
-            console.log(this.update);
-
             this.initFormGroup(c);
         });
     }
@@ -72,16 +67,7 @@ export class FormComponent implements OnInit {
         });
     }
     onSubmitForm() {
-        if (this.update) {
-            this.submitEvent.emit(this.companyProfile.value);
-        } else {
-            this.partnerservice
-                .add({
-                    ...this.companyProfile.value
-                })
-                .then(doc => {
-                    this.router.navigate(['partner', doc.id]);
-                });
-        }
+        this.submitEvent.emit(this.companyProfile.value);
+        this.submitted = true;
     }
 }
