@@ -2,8 +2,7 @@ import { PartnerService } from '../../partner.service';
 import { SignedComponent } from './signed.component';
 import { AddPipe } from 'src/app/common/add.pipe';
 import { FilesComponent } from 'src/app/common/files/files.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { MaterialModule } from 'src/app/material/material.module';
 
 export default {
     title: 'Public / Signed'
@@ -11,7 +10,7 @@ export default {
 
 const moduleMetadata = {
     declarations: [SignedComponent, AddPipe, FilesComponent],
-    imports: [MatIconModule, MatListModule],
+    imports: [MaterialModule],
     providers: [
         {
             provide: PartnerService,

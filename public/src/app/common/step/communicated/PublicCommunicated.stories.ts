@@ -1,7 +1,6 @@
 import { CommunicatedComponent } from './communicated.component';
 import { FilesComponent } from 'src/app/common/files/files.component';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { MaterialModule } from 'src/app/material/material.module';
 
 export default {
     title: 'Public / Communicated'
@@ -9,7 +8,7 @@ export default {
 
 const moduleMetadata = {
     declarations: [CommunicatedComponent, FilesComponent],
-    imports: [MatIconModule, MatListModule]
+    imports: [MaterialModule]
 };
 export const pendingWithoutUrlAndDate = () => ({
     template: `<app-communicated [company]="company"></app-communicated>`,

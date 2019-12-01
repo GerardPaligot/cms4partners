@@ -2,9 +2,8 @@ import { PartnerService } from '../../partner.service';
 import { ValidatedComponent } from './validated.component';
 import { AddPipe } from 'src/app/common/add.pipe';
 import { FilesComponent } from 'src/app/common/files/files.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { firestore } from 'firebase';
+import { MaterialModule } from 'src/app/material/material.module';
 
 export default {
     title: 'Public / Validated'
@@ -12,7 +11,7 @@ export default {
 
 const moduleMetadata = {
     declarations: [ValidatedComponent, AddPipe, FilesComponent],
-    imports: [MatIconModule, MatListModule],
+    imports: [MaterialModule],
     providers: [
         {
             provide: PartnerService,
@@ -30,7 +29,8 @@ export const stepPending = () => ({
         company: {
             status: {
                 validated: 'pending'
-            }
+            },
+            sponsoring: 'bronze'
         },
         step: {
             description: 'This is a description'
@@ -48,6 +48,7 @@ export const stepDone = () => ({
             status: {
                 validated: 'done'
             },
+            sponsoring: 'bronze',
             creationDate: firestore.Timestamp.fromDate(new Date()),
             devisUrl: 'https://devisUrl.com',
             conventionUrl: 'https://conventionUrl.com'

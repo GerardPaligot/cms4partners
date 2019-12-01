@@ -1,12 +1,7 @@
 import { AdminDefaultComponent } from './default.component';
 import { PartnerService } from '../../../partner.service';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
 import { FilesComponent } from 'src/app/common/files/files.component';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import { MaterialModule } from 'src/app/material/material.module';
 
 export default {
     title: 'Admin / Default'
@@ -14,7 +9,7 @@ export default {
 
 const moduleMetadata = {
     declarations: [AdminDefaultComponent, FilesComponent],
-    imports: [MatFormFieldModule, MatButtonModule, MatInputModule, MatExpansionModule, MatIconModule, MatListModule],
+    imports: [MaterialModule],
     providers: [
         {
             provide: PartnerService,

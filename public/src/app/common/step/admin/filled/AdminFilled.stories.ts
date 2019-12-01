@@ -1,8 +1,6 @@
 import { AdminFilledComponent } from './filled.component';
 import { PartnerService } from '../../../partner.service';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+import { MaterialModule } from 'src/app/material/material.module';
 
 export default {
     title: 'Admin / Filled'
@@ -10,7 +8,7 @@ export default {
 
 const moduleMetadata = {
     declarations: [AdminFilledComponent],
-    imports: [MatFormFieldModule, MatButtonModule, MatInputModule],
+    imports: [MaterialModule],
     providers: [
         {
             provide: PartnerService,
