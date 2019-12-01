@@ -1,9 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { Company } from '../Company';
 import { Observable, of } from 'rxjs';
-import { PartnerService } from '../partner.service';
-import { Router } from '@angular/router';
+import { Siret, Emails } from './validators';
 
 @Component({
     selector: 'app-form',
@@ -57,9 +56,9 @@ export class FormComponent implements OnInit {
             address: new FormControl({ value: company.address, disabled: this.readOnly }, [Validators.required]),
             zipCode: new FormControl({ value: company.zipCode, disabled: this.readOnly }, [Validators.required]),
             city: new FormControl({ value: company.city, disabled: this.readOnly }, [Validators.required]),
-            siret: new FormControl({ value: company.siret, disabled: this.readOnly }, [Validators.required]),
+            siret: new FormControl({ value: company.siret, disabled: this.readOnly }, [Validators.required, Siret()]),
             representant: new FormControl({ value: company.representant, disabled: this.readOnly }, [Validators.required]),
-            email: new FormControl({ value: company.email, disabled: this.readOnly }, [Validators.required]),
+            email: new FormControl({ value: company.email, disabled: this.readOnly }, [Validators.required, Emails()]),
             role: new FormControl({ value: company.role, disabled: this.readOnly }, [Validators.required]),
             sponsoring: new FormControl({ value: company.sponsoring, disabled: this.readOnly }, [Validators.required]),
             secondSponsoring: new FormControl({ value: company.secondSponsoring, disabled: this.readOnly }),
