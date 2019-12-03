@@ -1,3 +1,15 @@
+<mat-card>
+    <mat-chip-list aria-label="Dashboard">
+        <mat-chip>{{ numberOther }} Autres</mat-chip>
+        <mat-chip>{{ numberESN }} ESN</mat-chip>
+    </mat-chip-list>
+</mat-card>
+
+<mat-card>
+    <mat-radio-group [ngModel]="sortBy" (ngModelChange)="sortByChange($event)" aria-label="Select an option" [labelPosition]="'before'">
+        <mat-radio-button *ngFor="let option of sortByValues" [value]="option">{{ option }}</mat-radio-button>
+    </mat-radio-group>
+</mat-card>
 <table mat-table [dataSource]="partners" class="mat-elevation-z8 full-width">
     <!-- Name Column -->
     <ng-container matColumnDef="name">

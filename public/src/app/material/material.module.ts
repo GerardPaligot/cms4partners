@@ -10,6 +10,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatTableModule } from '@angular/material/table';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
     declarations: [],
@@ -24,18 +27,24 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         MatCardModule,
         MatListModule,
         MatToolbarModule,
+        MatRadioModule,
+        MatTableModule,
+        MatChipsModule,
         CommonModule
     ],
     exports: [
         MatIconModule,
         MatTabsModule,
+        MatTableModule,
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
         MatExpansionModule,
+        MatChipsModule,
         MatCardModule,
         MatListModule,
+        MatRadioModule,
         MatToolbarModule,
         CommonModule
     ]
