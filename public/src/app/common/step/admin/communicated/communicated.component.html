@@ -2,7 +2,12 @@
     <input matInput type="date" placeholder="date de publication" [(ngModel)]="company.publicationDate" />
 </mat-form-field>
 <button mat-button color="primary" (click)="setDate()">Programmer le communication</button>
-<label class="full-width" for="file">Flyer (*.svg,*.png)s: <input type="file" (change)="uploadFlyer($event)" accept=".svg,.png" /> </label>
+
+<br />
+
+<div class="inline-bloc">
+    <app-upload (uploadFile)="uploadFlyer($event)" [isEnable]="" accept=".png,.svg" label="Flyer (*.svg,*.png)s"></app-upload>
+</div>
 
 <app-files *ngIf="company.flyerUrl" [files]="files"></app-files>
 

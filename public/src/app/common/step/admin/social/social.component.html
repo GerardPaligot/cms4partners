@@ -1,6 +1,7 @@
-<label *ngIf="!company.logoUrl" class="full-width" for="file"
-    >Logo (*.png, *.svg)": <input type="file" (change)="upload($event)" placeholder="Logo (*.png, *.svg)" accept=".png,.svg" />
-</label>
+<div class="inline-bloc">
+    <app-upload (uploadFile)="upload($event)" [isEnable]="" accept=".png,.svg" label="Logo (*.png, *.svg)"></app-upload>
+</div>
+
 <mat-form-field class="full-width">
     <textarea [(ngModel)]="company.twitter" matInput placeholder="Message Twitter"></textarea>
 </mat-form-field>

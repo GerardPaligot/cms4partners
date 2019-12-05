@@ -28,6 +28,7 @@ import { PanelItemComponent } from './panel-item/panel-item.component';
 import { FilesComponent } from './files/files.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
+import { UploadComponent } from './upload/upload.component';
 @NgModule({
     declarations: [
         FormComponent,
@@ -51,7 +52,8 @@ import { MaterialModule } from '../material/material.module';
         SignedComponent,
         AdminPaidComponent,
         PanelItemComponent,
-        FilesComponent
+        FilesComponent,
+        UploadComponent
     ],
     imports: [MaterialModule, CommonModule, ReactiveFormsModule, FormsModule, AngularFireAuthModule, RouterModule],
     exports: [FormComponent, LoaderComponent, WorkflowComponent, InfoComponent],
