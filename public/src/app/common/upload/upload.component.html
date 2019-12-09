@@ -1,0 +1,9 @@
+<div class="container">
+    <input [id]="fileInputId" type="file" class="hide" [accept]="accept" (change)="uploadFileEvent($event)" />
+    <label [for]="fileInputId" class="input-file">
+        <mat-icon class="upload-icon">attach_file</mat-icon>
+    </label>
+    <mat-form-field class="ab-input">
+        <input matInput [placeholder]="label" disabled [value]="fileName" />
+    </mat-form-field>
+</div>

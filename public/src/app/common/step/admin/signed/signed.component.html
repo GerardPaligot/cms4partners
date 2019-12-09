@@ -1,4 +1,6 @@
-<label class="full-width" for="file">Convention (*.pdf)s: <input type="file" (change)="uploadConvention($event)" accept=".pdf" /> </label>
+<div class="inline-bloc">
+    <app-upload (uploadFile)="uploadConvention($event)" [isEnable]="" accept=".pdf" label="Convention (*.pdf)s"></app-upload>
+</div>
 
 <app-files [files]="files"></app-files>
 

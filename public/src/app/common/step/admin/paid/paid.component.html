@@ -1,4 +1,6 @@
-<label class="full-width" for="file">Facture (*.pdf)s: <input type="file" (change)="uploadInvoice($event)" accept=".pdf" /> </label>
+<div class="inline-bloc">
+    <app-upload (uploadFile)="uploadInvoice($event)" [isEnable]="" accept=".pdf" label="Facture (*.pdf)s"></app-upload>
+</div>
 
 <app-files *ngIf="company.invoiceUrl" [files]="files"></app-files>
 

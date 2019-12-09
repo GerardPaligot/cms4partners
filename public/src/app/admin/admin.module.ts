@@ -8,6 +8,7 @@ import { PartnerComponent } from '../common/partner/partner.component';
 import { MatTableModule } from '@angular/material/table';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent },
@@ -19,7 +20,16 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [DashboardComponent],
-    imports: [MaterialModule, CommonModule, CommonPartnersModule, RouterModule.forChild(routes), FormsModule],
+    imports: [
+        MaterialModule,
+        MatButtonModule,
+        MatTableModule,
+        MatTabsModule,
+        CommonModule,
+        CommonPartnersModule,
+        FormsModule,
+        RouterModule.forChild(routes)
+    ],
     providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }]
 })
 export class AdminModule {}

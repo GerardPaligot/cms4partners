@@ -33,3 +33,9 @@ body {
 mat-card {
     margin-bottom: 1em;
 }
+
+.inline-bloc {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
