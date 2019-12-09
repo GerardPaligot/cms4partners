@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
     selector: 'app-files',
     template: `
-        <mat-list role="list">
+        <mat-list role="list" *ngIf="hasFile">
             <h3 mat-subheader>Fichiers associés</h3>
             <ng-container *ngFor="let item of files | keyvalue">
                 <mat-list-item role="listitem" *ngIf="item.value">
@@ -20,6 +20,6 @@ export class FilesComponent implements OnInit {
     hasFile = false;
 
     ngOnInit(): void {
-        this.hasFile = Object.values(this.files).filter(path => !path).length > 0;
+        this.hasFile = Object.values(this.files).filter(path => !!path).length > 0;
     }
 }
