@@ -24,6 +24,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { WorkflowStep } from '../workflow/workflow.service';
 import { Company } from '../Company';
 import { FilledComponent } from '../step/filled/filled.component';
+import { CodeComponent } from '../step/code/code.component';
 
 @Component({
     selector: 'app-panel-item',
@@ -41,7 +42,8 @@ export class PanelItemComponent implements AfterViewInit, OnChanges {
         paid: PaidComponent,
         received: AdminSocialComponent,
         communicated: CommunicatedComponent,
-        sign: SignedComponent
+        sign: SignedComponent,
+        code: CodeComponent
     };
 
     adminCOmponent = {
@@ -50,7 +52,8 @@ export class PanelItemComponent implements AfterViewInit, OnChanges {
         sign: AdminSignedComponent,
         paid: AdminPaidComponent,
         received: AdminSocialComponent,
-        communicated: AdminCommunicatedComponent
+        communicated: AdminCommunicatedComponent,
+        code: CodeComponent
     };
 
     @ViewChild('content', { read: ViewContainerRef, static: false })

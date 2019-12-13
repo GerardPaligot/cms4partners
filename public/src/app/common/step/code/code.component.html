@@ -1,0 +1,10 @@
+<mat-list role="list" *ngIf="codes">
+    <h3 mat-subheader>Codes</h3>
+    Vous pouvez à présente les codes suivants afin de récupérer vos places sur le site
+    <a href="https://www.billetweb.fr/devfest-lille-2020&quick=1038168" target="_blank">Billetweb</a>
+    <ng-container *ngFor="let item of codes | keyvalue">
+        <mat-list-item role="listitem"
+            ><span [ngClass]="{ done: item.value }">{{ item.key }}</span></mat-list-item
+        >
+    </ng-container>
+</mat-list>

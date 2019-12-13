@@ -29,6 +29,7 @@ import { FilesComponent } from './files/files.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { UploadComponent } from './upload/upload.component';
+import { CodeComponent } from './step/code/code.component';
 @NgModule({
     declarations: [
         FormComponent,
@@ -53,7 +54,8 @@ import { UploadComponent } from './upload/upload.component';
         AdminPaidComponent,
         PanelItemComponent,
         FilesComponent,
-        UploadComponent
+        UploadComponent,
+        CodeComponent
     ],
     imports: [MaterialModule, CommonModule, ReactiveFormsModule, FormsModule, AngularFireAuthModule, RouterModule],
     exports: [FormComponent, LoaderComponent, WorkflowComponent, InfoComponent],
@@ -70,7 +72,8 @@ import { UploadComponent } from './upload/upload.component';
         ValidatedComponent,
         PaidComponent,
         AdminDefaultComponent,
-        PublicFilledComponent
+        PublicFilledComponent,
+        CodeComponent
     ]
 })
 export class CommonPartnersModule {}

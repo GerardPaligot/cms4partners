@@ -1,52 +1,53 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { sendEmail } from './utils/mail';
+import { sendEmail, sendEmailToAllContacts } from './utils/mail';
 import { onDocumentChange } from './utils/document-change';
+import { DocumentData, Timestamp } from '@google-cloud/firestore';
 
+import WelcomeEmailFactory from './emails/template/step-1-partnership-demand';
 admin.initializeApp();
 const firestore = admin.firestore();
 
-function sendWelcomeEmail(emails: string[], id: string) {
-    return Promise.all(
-        emails.map(email => {
-            return sendEmail(
-                email.trim(),
-                '🎉 Partneriat Devfest Lille 2020',
-                `
-                    <p>
-                        Vous pouvez à présent suivre l'état d'avancement de notre partenariat en visitant votre page dédiée ${
-                            functions.config().hosting.baseurl
-                        }/dashboard/${id}. 
-                    </p>
-                `
-            );
-        })
-    );
+function sendWelcomeEmail(company: DocumentData, id: string) {
+    const emailTemplate = WelcomeEmailFactory(company, `${functions.config().hosting.baseurl}/partner/${id}`);
+    return sendEmailToAllContacts(company, emailTemplate);
 }
 
-export const newPartner = functions.firestore.document('companies/{companyId}').onCreate((snap, context) => {
-    const company = snap.data() || {};
-    const id = snap.id;
-    return sendWelcomeEmail(company.email, snap.id)
-        .then(() => {
-            return sendEmail(
-                functions.config().mail.to,
-                '🎉 Nouveau Partenaire ' + company.name,
-                `
-            La société ${company.name} souhaite devenir partenaire ${company.sponsoring}
-        `
-            );
-        })
-        .then(() => {
-            return firestore.doc('companies/' + id).update({
-                ...company,
-                status: {
-                    filled: 'done',
-                    validated: 'pending'
-                }
-            });
+function addCreationDate(id: string) {
+    return firestore
+        .doc('companies/' + id)
+        .update({
+            creationDate: Timestamp.fromDate(new Date())
         })
         .catch(err => console.log(err));
+}
+
+function updatesStatus(id: string, company: any, status: any) {
+    return firestore
+        .doc('companies/' + id)
+        .update({
+            ...company,
+            status
+        })
+        .catch(err => console.log(err));
+}
+export const newPartner = functions.firestore.document('companies/{companyId}').onCreate(async (snap, context) => {
+    const company = snap.data() || {};
+    const id = snap.id;
+    await addCreationDate(id);
+    await sendWelcomeEmail(company, snap.id);
+    await sendEmail(
+        functions.config().mail.to,
+        '🎉 Nouveau Partenaire ' + company.name,
+        `
+La société ${company.name} souhaite devenir partenaire ${company.sponsoring}
+`
+    );
+
+    return updatesStatus(id, company, {
+        filled: 'done',
+        validated: 'pending'
+    });
 });
 
 export const partnershipUpdated = functions.firestore.document('companies/{companyId}').onUpdate((changes, context) => {

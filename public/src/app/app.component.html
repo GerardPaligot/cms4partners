@@ -2,8 +2,12 @@
     <mat-toolbar-row>
         <span>CMS4Partners - Devfest Lille</span>
         <span class="example-spacer"></span>
+
         <a *ngIf="isLoggedIn" [routerLink]="['admin']" mat-button routerLinkActive="mat-accent">
             Administration
+        </a>
+        <a href="mailto:contact@gdglille.org" mat-button>
+            Vous avez un bug ?
         </a>
         <button *ngIf="!isLoggedIn" (click)="login()" mat-button>
             Log in

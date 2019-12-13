@@ -1,3 +1,5 @@
+import { DocumentData } from '@google-cloud/firestore';
+
 const functions = require('firebase-functions');
 
 export function getFrom() {
@@ -7,6 +9,14 @@ export function getFrom() {
             Name: 'GDG Lille'
         }
     };
+}
+
+export function sendEmailToAllContacts(company: DocumentData, emailFactory: any) {
+    return Promise.all(
+        company.email.map((email: string) => {
+            return sendEmail(email.trim(), emailFactory.subject, emailFactory.body);
+        })
+    );
 }
 export function sendEmail(to: string, subject: string, body: string) {
     const mailjet = require('node-mailjet').connect(functions.config().mailjet.api, functions.config().mailjet.private);
