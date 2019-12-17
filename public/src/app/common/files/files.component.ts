@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-files',
+<<<<<<< Updated upstream
     template: `
         <mat-list role="list" *ngIf="hasFile">
             <h3 mat-subheader>Fichiers associés</h3>
@@ -13,6 +14,10 @@ import { Component, Input, OnInit } from '@angular/core';
             </ng-container>
         </mat-list>
     `
+=======
+    templateUrl: 'files.component.html',
+    styleUrls: ['files.component.scss']
+>>>>>>> Stashed changes
 })
 export class FilesComponent implements OnInit {
     @Input()
