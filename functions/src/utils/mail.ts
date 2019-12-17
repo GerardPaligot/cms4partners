@@ -1,32 +1,45 @@
-const mailjet = require("node-mailjet").connect(
-  "26f08a9d131bbf9a47bb7e273fc6182f",
-  "0dcea32f41858cb131b2169f2df70489"
-);
+import { DocumentData } from '@google-cloud/firestore';
 
-function sendEmail(to: string, subject: string, body: string) {
-  const request = mailjet.post("send", { version: "v3.1" }).request({
-    Messages: [
-      {
+const functions = require('firebase-functions');
+
+export function getFrom() {
+    return {
         From: {
-          Email: "emmanuel@gdglille.org",
-          Name: "GDG Lille"
-        },
-        To: [
-          {
-            Email: to
-          }
-        ],
-        Subject: subject,
-        HTMLPart: body,
-        CustomID: "AppGettingStartedTest"
-      }
-    ]
-  });
-  request
-    .then((result: { body: string }) => {
-      console.log(result.body);
-    })
-    .catch((err: { statusCode: number }) => {
-      console.log(err.statusCode);
+            Email: functions.config().mail.from,
+            Name: 'GDG Lille'
+        }
+    };
+}
+
+export function sendEmailToAllContacts(company: DocumentData, emailFactory: any) {
+    return Promise.all(
+        company.email.map((email: string) => {
+            return sendEmail(email.trim(), emailFactory.subject, emailFactory.body);
+        })
+    );
+}
+export function sendEmail(to: string, subject: string, body: string) {
+    const mailjet = require('node-mailjet').connect(functions.config().mailjet.api, functions.config().mailjet.private);
+    const request = mailjet.post('send', { version: 'v3.1' }).request({
+        Messages: [
+            {
+                ...getFrom(),
+                To: [
+                    {
+                        Email: to
+                    }
+                ],
+                Subject: subject,
+                HTMLPart: body,
+                CustomID: 'AppGettingStartedTest'
+            }
+        ]
     });
+    return request
+        .then((result: { body: string }) => {
+            console.log(result.body);
+        })
+        .catch((err: { statusCode: number }) => {
+            console.log(err);
+        });
 }

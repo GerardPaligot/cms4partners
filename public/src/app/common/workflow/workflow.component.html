@@ -1,1 +1,22 @@
-<p>workflow works!</p>
+<mat-accordion *ngIf="workflow">
+    <mat-expansion-panel
+        *ngFor="let step of workflow.steps"
+        [disabled]="step.state !== 'done' && step.state !== 'pending'"
+        [expanded]="step.state === 'pending'"
+    >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <ng-container [ngSwitch]="step.state">
+                    <ng-container *ngSwitchCase="'done'"> <i class="fas fa-check-circle"></i> </ng-container>
+                    <ng-container *ngSwitchCase="'pending'"> <i class="fas fa-tasks"></i> </ng-container>
+                    <ng-container *ngSwitchDefault> <i class="far fa-check-circle"></i></ng-container>
+                </ng-container>
+                {{ step.title }}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <app-panel-item [step]="step" [id]="id" [company]="partner"></app-panel-item>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<app-loader *ngIf="isLoading"></app-loader>

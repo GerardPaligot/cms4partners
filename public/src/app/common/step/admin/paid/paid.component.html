@@ -1,0 +1,9 @@
+<div class="inline-bloc">
+    <app-upload (uploadFile)="uploadInvoice($event)" [isEnable]="" accept=".pdf" label="Facture (*.pdf)s"></app-upload>
+</div>
+
+<app-files *ngIf="company.invoiceUrl" [files]="files"></app-files>
+
+<mat-action-row *ngIf="company.status[step.key] !== 'done'">
+    <button mat-button (click)="setDone()">Valider cette étape</button>
+</mat-action-row>

@@ -22,10 +22,17 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "aot": false,
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "styles": ["node_modules/bulma/css/bulma.css", "src/styles.scss"],
-                        "scripts": []
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "src/styles.scss",
+                            "src/scss/variables.scss"
+                        ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/scss"]
+                        },
+                        "scripts": [],
+                        "aot": true
                     },
                     "configurations": {
                         "staging": {

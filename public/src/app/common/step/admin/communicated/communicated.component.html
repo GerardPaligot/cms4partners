@@ -1,0 +1,14 @@
+<mat-form-field class="full-width">
+    <input matInput type="date" placeholder="date de publication" [(ngModel)]="company.publicationDate" />
+</mat-form-field>
+<button mat-button color="primary" (click)="setDate()">Programmer le communication</button>
+
+<br />
+
+<div class="inline-bloc">
+    <app-upload (uploadFile)="uploadFlyer($event)" [isEnable]="" accept=".png,.svg" label="Flyer (*.svg,*.png)s"></app-upload>
+</div>
+
+<app-files *ngIf="company.flyerUrl" [files]="files"></app-files>
+
+<app-admin-default [workflow]="workflow" [step]="step" [company]="company" [id]="id"></app-admin-default>

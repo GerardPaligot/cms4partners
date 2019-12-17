@@ -1,0 +1,21 @@
+<mat-form-field class="full-width">
+    <mat-label>Sponsoring</mat-label>
+    <select matNativeControl required [(ngModel)]="choice">
+        <option [value]="company.sponsoring">{{ company.sponsoring }}</option>
+        <option [value]="company.secondSponsoring">{{ company.secondSponsoring }}</option>
+    </select>
+</mat-form-field>
+<button color="primary" mat-button (click)="updateSponsoring()">Sauvegarder</button>
+
+<br />
+
+<div class="inline-bloc">
+    <app-upload (uploadFile)="uploadConvention($event)" [isEnable]="" accept=".pdf" label="Convention (*.pdf)s"></app-upload>
+    <app-upload (uploadFile)="uploadDevis($event)" [isEnable]="" accept=".pdf" label="Devis (*.pdf)"></app-upload>
+</div>
+
+<app-files [files]="files"></app-files>
+
+<mat-action-row *ngIf="company.status[step.key] !== 'done'">
+    <button mat-button (click)="setDone()">Valider cette étape</button>
+</mat-action-row>

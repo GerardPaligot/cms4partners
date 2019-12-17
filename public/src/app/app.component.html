@@ -1,41 +1,23 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img
-        src="https://bulma.io/images/bulma-logo.png"
-        width="112"
-        height="28"
-      />
-    </a>
-  </div>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>CMS4Partners - Devfest Lille</span>
+        <span class="example-spacer"></span>
 
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a *ngIf="isLoggedIn" class="navbar-item" href="/#/admin">
-        Administration
-      </a>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <button *ngIf="!isLoggedIn" (click)="login()" class="button is-light">
+        <a *ngIf="isLoggedIn" [routerLink]="['admin']" mat-button routerLinkActive="mat-accent">
+            Administration
+        </a>
+        <a href="mailto:contact@gdglille.org" mat-button>
+            Vous avez un bug ?
+        </a>
+        <button *ngIf="!isLoggedIn" (click)="login()" mat-button>
             Log in
-          </button>
-          <button *ngIf="isLoggedIn" (click)="logout()" class="button is-light">
+        </button>
+        <button *ngIf="isLoggedIn" (click)="logout()" mat-button>
             Log out
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-<div class="container">
-  <div class="columns">
-    <div class="column is-3"></div>
-    <div class="column is-6">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+<section class="container">
+    <router-outlet></router-outlet>
+</section>

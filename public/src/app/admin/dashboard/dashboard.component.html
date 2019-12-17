@@ -1,26 +1,37 @@
-<table
-  class="table is-striped is-bordered is-fullwidth
-"
->
-  <thead>
-    <tr>
-      <th>Partner</th>
-      <th>Sponsoring</th>
-      <th></th>
-    </tr>
-  </thead>
+<mat-card>
+    <mat-chip-list aria-label="Dashboard">
+        <mat-chip>{{ numberOther }} Autres</mat-chip>
+        <mat-chip>{{ numberESN }} ESN</mat-chip>
+    </mat-chip-list>
+</mat-card>
 
-  <tbody>
-    <tr *ngFor="let partner of partners | async">
-      <th>{{ partner.name }}</th>
-      <td>
-        {{ partner.sponsoring }}
-      </td>
-      <td>
-        <a class="button" [href]="'/#/admin/partner/' + partner.id">
-          Modifier
-        </a>
-      </td>
-    </tr>
-  </tbody>
+<mat-card>
+    <mat-radio-group [ngModel]="sortBy" (ngModelChange)="sortByChange($event)" aria-label="Select an option" [labelPosition]="'before'">
+        <mat-radio-button *ngFor="let option of sortByValues" [value]="option">{{ option }}</mat-radio-button>
+    </mat-radio-group>
+</mat-card>
+<table mat-table [dataSource]="partners" class="mat-elevation-z8 full-width">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nom</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="sponsoring">
+        <th mat-header-cell *matHeaderCellDef>Sponsoring</th>
+        <td mat-cell *matCellDef="let element">{{ element.sponsoring }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+            <a [href]="'/#/admin/partner/' + element.id" mat-button color="accent">
+                Modifier
+            </a>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>

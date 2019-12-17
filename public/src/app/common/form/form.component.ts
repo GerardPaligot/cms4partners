@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Company } from '../partner.service';
+import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
+import { Company } from '../Company';
 import { Observable, of } from 'rxjs';
+import { Siret, Emails } from './validators';
 
 @Component({
     selector: 'app-form',
@@ -14,6 +15,7 @@ export class FormComponent implements OnInit {
 
     defaultCompany = {
         name: '',
+        tel: '',
         address: '',
         zipCode: '',
         city: '',
@@ -22,8 +24,12 @@ export class FormComponent implements OnInit {
         email: '',
         role: '',
         sponsoring: '',
+        secondSponsoring: '',
         lang: '',
-        status: {}
+        status: {},
+        devisUrl: '',
+        conventionUrl: '',
+        invoiceUrl: ''
     };
 
     @Input()
@@ -34,6 +40,7 @@ export class FormComponent implements OnInit {
     @Output()
     public submitEvent = new EventEmitter<Company>();
 
+    submitted = false;
     ngOnInit() {
         this.initFormGroup(this.defaultCompany);
 
@@ -45,18 +52,21 @@ export class FormComponent implements OnInit {
     private initFormGroup(company: Company) {
         this.companyProfile = new FormGroup({
             name: new FormControl({ value: company.name, disabled: this.readOnly }, [Validators.required]),
+            tel: new FormControl({ value: company.tel, disabled: this.readOnly }, [Validators.required]),
             address: new FormControl({ value: company.address, disabled: this.readOnly }, [Validators.required]),
             zipCode: new FormControl({ value: company.zipCode, disabled: this.readOnly }, [Validators.required]),
             city: new FormControl({ value: company.city, disabled: this.readOnly }, [Validators.required]),
-            siret: new FormControl({ value: company.siret, disabled: this.readOnly }, [Validators.required]),
+            siret: new FormControl({ value: company.siret, disabled: this.readOnly }, [Validators.required, Siret()]),
             representant: new FormControl({ value: company.representant, disabled: this.readOnly }, [Validators.required]),
-            email: new FormControl({ value: company.email, disabled: this.readOnly }, [Validators.required]),
+            email: new FormControl({ value: company.email, disabled: this.readOnly }, [Validators.required, Emails()]),
             role: new FormControl({ value: company.role, disabled: this.readOnly }, [Validators.required]),
             sponsoring: new FormControl({ value: company.sponsoring, disabled: this.readOnly }, [Validators.required]),
+            secondSponsoring: new FormControl({ value: company.secondSponsoring, disabled: this.readOnly }),
             lang: new FormControl({ value: company.lang, disabled: this.readOnly }, [Validators.required])
         });
     }
     onSubmitForm() {
         this.submitEvent.emit(this.companyProfile.value);
+        this.submitted = true;
     }
 }
