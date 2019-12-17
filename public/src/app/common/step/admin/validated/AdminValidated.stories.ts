@@ -2,13 +2,14 @@ import { AdminValidatedComponent } from './validated.component';
 import { PartnerService } from '../../../partner.service';
 import { FilesComponent } from 'src/app/common/files/files.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { UploadComponent } from 'src/app/common/upload/upload.component';
 
 export default {
     title: 'Admin / Validated'
 };
 
 const moduleMetadata = {
-    declarations: [AdminValidatedComponent, FilesComponent],
+    declarations: [AdminValidatedComponent, FilesComponent, UploadComponent],
     imports: [MaterialModule],
     providers: [
         {

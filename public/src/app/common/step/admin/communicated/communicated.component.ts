@@ -22,8 +22,8 @@ export class AdminCommunicatedComponent implements OnInit {
             publicationDate: this.company.publicationDate
         });
     }
-    uploadFlyer(event) {
-        this.partnerService.uploadFile(this.id, event.target.files[0], 'flyerUrl', 'flyers');
+    uploadFlyer(file) {
+        this.partnerService.uploadFile(this.id, file, 'flyerUrl', 'flyers');
     }
 
     ngOnInit() {

@@ -5,16 +5,18 @@ Bonjour
 <br><br>
 Bonne nouvelle ! Votre demande de pack ${sponsoring} pour le Devfest Lille 2020 a été validé.
 <br><br>
-Vous trouverez ci joint le contrat\pour ce partenariat à nous retourner signé ainsi que la facture proforma à acquitter. 
+Vous trouverez ci joint la convention pour ce partenariat à nous retourner signée ainsi que la facture proforma à acquitter. 
 <br><br>
-Vous pouvez nous faire parvenir le contrat soit en retour de ce mail, soit en le transférant sur le site cms4devfest : ${address_cms4devfest}.
+Vous pouvez nous faire parvenir la convention soit en retour de ce mail, soit en la transférant sur le site cms4devfest : ${address_cms4devfest}.
 <br><br>
 Ce pack ${sponsoring} vous est reservé jusqu'au ${sponsor_reservation_end_date}.
 <br><br>
-Une fois le contrat signé et le paiement reçu, nous passerons à la prochaine étape du partenariat.
+Une fois la convention signée et le paiement reçu, nous passerons à la prochaine étape du partenariat.
 <br><br>
 Nous restons à votre disposition pour tout complément via l'adresse email contact@gdglille.org.
 <br><br>
 Cordialement     
+<br><br>
+L'équipe du Devfest Lille 2020
     `
 });

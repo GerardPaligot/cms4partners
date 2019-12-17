@@ -58,11 +58,7 @@ export const partnershipUpdated = functions.firestore.document('companies/{compa
     }
     const id = changes.after.id;
 
-    const update = onDocumentChange(before, after, id);
-
-    return firestore.doc('companies/' + id).update({
-        ...update
-    });
+    return onDocumentChange(firestore, before, after, id, functions.config());
 });
 
 exports.updateConventionSignedUrlProperty = functions.storage.object().onFinalize(async object => {

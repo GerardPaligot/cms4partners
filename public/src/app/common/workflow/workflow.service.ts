@@ -51,6 +51,7 @@ export class WorkflowService {
         return this.workflowCollectionRef.snapshotChanges().pipe(
             map(actions => {
                 return actions.map(a => {
+                    console.log(a.payload.doc.data());
                     const workflow = a.payload.doc.data() as Workflow;
                     return { ...workflow };
                 });

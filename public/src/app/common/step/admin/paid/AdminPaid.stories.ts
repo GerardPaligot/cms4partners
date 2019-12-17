@@ -2,13 +2,14 @@ import { AdminPaidComponent } from './paid.component';
 import { PartnerService } from '../../../partner.service';
 import { FilesComponent } from 'src/app/common/files/files.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { UploadComponent } from 'src/app/common/upload/upload.component';
 
 export default {
     title: 'Admin / Paid'
 };
 
 const moduleMetadata = {
-    declarations: [AdminPaidComponent, FilesComponent],
+    declarations: [AdminPaidComponent, FilesComponent, UploadComponent],
     imports: [MaterialModule],
     providers: [
         {

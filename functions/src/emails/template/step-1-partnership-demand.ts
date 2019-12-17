@@ -1,5 +1,5 @@
 export default ({ sponsoring }: any, adress_cms4devfest: string) => ({
-    subject: 'Devfest Lille 2020 : Demande de partenariat bien reçu',
+    subject: 'Devfest Lille 2020 : Demande de partenariat bien reçue',
     body: `
 Bonjour
 <br><br>

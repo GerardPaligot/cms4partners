@@ -3,6 +3,11 @@
     <app-files [files]="files"></app-files>
 </p>
 
-<div class="inline-bloc" *ngIf="!company.conventionSignedUrl">
-    <app-upload (uploadFile)="uploadConvention($event)" [isEnable]="" accept=".pdf" label="Convention (*.pdf)s"></app-upload>
-</div>
+<ng-container *ngIf="company.status.sign === 'pending'">
+    <p>
+        Vous pouvez transférer ci-dessous la convention signée:
+    </p>
+    <div class="inline-bloc" *ngIf="!company.conventionSignedUrl">
+        <app-upload (uploadFile)="uploadConvention($event)" [isEnable]="" accept=".pdf" label="Convention (*.pdf)"></app-upload>
+    </div>
+</ng-container>

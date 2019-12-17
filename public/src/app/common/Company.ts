@@ -19,7 +19,6 @@ export interface Company {
     conventionUrl: string;
     invoiceUrl: string;
     type?: 'esn' | 'other';
-    facebook?: string;
     twitter?: string;
     linkedin?: string;
     publicationDate?: Date;

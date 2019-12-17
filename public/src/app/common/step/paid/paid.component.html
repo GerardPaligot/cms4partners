@@ -1,10 +1,9 @@
 <p *ngIf="company.status.paid !== 'done'">
-    Nous sommes dans l'attente du paiement de votre part. Une fois le paiement reçu, nous pourrons finaliser notre partenariat.
+    Nous sommes dans l'attente de reception du paiement de votre part. Une fois celui-ci reçu, nous pourrons finaliser notre partenariat.
 </p>
 <ng-container *ngIf="company.status.paid === 'done'">
     <p>
-        Nous avons bien reçu le contrat signé ainsi que votre paiement et nous vous remercions pour votre réactivité. Vous trouverez ci
-        joint la facture.
+        Nous avons bien reçu votre paiement et nous vous remercions pour votre réactivité. Vous trouverez ci joint la facture:
     </p>
 
     <app-files [files]="files"></app-files>

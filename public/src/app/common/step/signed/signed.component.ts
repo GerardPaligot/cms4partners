@@ -35,7 +35,7 @@ export class SignedComponent implements OnInit {
     setDone() {
         this.updateStatus('done');
     }
-    uploadConvention(event) {
-        this.partnerService.uploadFile(this.id, event.target.files[0], 'conventionSignedUrl', 'signed');
+    uploadConvention(file) {
+        this.partnerService.uploadFile(this.id, file, 'conventionSignedUrl', 'signed');
     }
 }

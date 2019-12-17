@@ -3,13 +3,14 @@ import { SignedComponent } from './signed.component';
 import { AddPipe } from 'src/app/common/add.pipe';
 import { FilesComponent } from 'src/app/common/files/files.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { UploadComponent } from '../../upload/upload.component';
 
 export default {
     title: 'Public / Signed'
 };
 
 const moduleMetadata = {
-    declarations: [SignedComponent, AddPipe, FilesComponent],
+    declarations: [SignedComponent, AddPipe, FilesComponent, UploadComponent],
     imports: [MaterialModule],
     providers: [
         {

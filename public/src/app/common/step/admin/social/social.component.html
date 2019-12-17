@@ -3,10 +3,7 @@
 </div>
 
 <mat-form-field class="full-width">
-    <textarea [(ngModel)]="company.twitter" matInput placeholder="Message Twitter"></textarea>
-</mat-form-field>
-<mat-form-field class="full-width">
-    <textarea [(ngModel)]="company.facebook" matInput placeholder="Message Facebook"></textarea>
+    <textarea [(ngModel)]="company.twitter" matInput placeholder="Message Twitter" maxlength="280"></textarea>
 </mat-form-field>
 
 <mat-form-field class="full-width">

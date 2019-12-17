@@ -1,10 +1,14 @@
+:host {
+    flex-grow: 1;
+    align-content: flex-start;
+}
 .hide {
     display: none;
 }
 
 .container {
     position: relative;
-    width: 200px;
+    margin: 0;
 
     &:hover {
         .upload-icon {
@@ -34,4 +38,8 @@ label {
         color: #ffffff;
         float: right;
     }
+}
+
+button {
+    margin-left: 1em;
 }

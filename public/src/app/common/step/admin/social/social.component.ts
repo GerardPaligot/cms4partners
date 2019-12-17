@@ -23,12 +23,10 @@ export class AdminSocialComponent implements OnInit {
     update() {
         this.partnerService.update(this.id, {
             twitter: this.company.twitter || '',
-            facebook: this.company.facebook || '',
             linkedin: this.company.linkedin || ''
         });
     }
-    upload(event) {
-        event.preventDefault();
-        this.partnerService.uploadFile(this.id, event.target.files[0]);
+    upload(file) {
+        this.partnerService.uploadFile(this.id, file);
     }
 }

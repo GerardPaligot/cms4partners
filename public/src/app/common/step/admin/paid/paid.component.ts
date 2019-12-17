@@ -35,7 +35,7 @@ export class AdminPaidComponent implements OnInit {
     setDone() {
         this.updateStatus('done');
     }
-    uploadInvoice(event) {
-        this.partnerService.uploadFile(this.id, event.target.files[0], 'invoiceUrl', 'facture');
+    uploadInvoice(file) {
+        this.partnerService.uploadFile(this.id, file, 'invoiceUrl', 'facture');
     }
 }

@@ -2,13 +2,14 @@ import { AdminSignedComponent } from './signed.component';
 import { PartnerService } from '../../../partner.service';
 import { FilesComponent } from 'src/app/common/files/files.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { UploadComponent } from 'src/app/common/upload/upload.component';
 
 export default {
     title: 'Admin / Signed'
 };
 
 const moduleMetadata = {
-    declarations: [AdminSignedComponent, FilesComponent],
+    declarations: [AdminSignedComponent, FilesComponent, UploadComponent],
     imports: [MaterialModule],
     providers: [
         {

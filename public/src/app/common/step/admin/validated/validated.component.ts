@@ -45,10 +45,10 @@ export class AdminValidatedComponent implements OnInit {
             secondSponsoring: this.choice === this.company.sponsoring ? this.company.secondSponsoring : this.company.sponsoring
         });
     }
-    uploadConvention(event) {
-        this.partnerService.uploadFile(this.id, event.target.files[0], 'conventionUrl', 'convention');
+    uploadConvention(file) {
+        this.partnerService.uploadFile(this.id, file, 'conventionUrl', 'convention');
     }
-    uploadDevis(event) {
-        this.partnerService.uploadFile(this.id, event.target.files[0], 'devisUrl', 'devis');
+    uploadDevis(file) {
+        this.partnerService.uploadFile(this.id, file, 'devisUrl', 'devis');
     }
 }

@@ -1,92 +1,69 @@
 import { DocumentData } from '@google-cloud/firestore';
-//import * as admin from 'firebase-admin';
 import { sendEmailToAllContacts } from './mail';
-import * as functions from 'firebase-functions';
-
+import { generateAndStoreInvoice, generateInvoiceNumber, generateAndStoreProformaInvoiceAndConvention } from './files';
 import partnershipValidated from './steps/partnershipValidated';
 import PaymentReceivedFactory from '../emails/template/step-3-payment-received';
-/*
-async function generateInvoiceNumber(id: string) {
-    const firestore = admin.firestore();
 
-    const invoiceNumber = await firestore
-        .doc('configuration/invoice_2020')
-        .get()
-        .then(invoice => {
-            return (invoice.data() as any).number;
-        });
+export enum StatusEnum {
+    PENDING = 'pending',
+    DONE = 'done'
+}
 
-    const formattedNumber = '2020_' + invoiceNumber.padStart(3, '0');
-
-    await firestore
-        .doc('companies/' + id)
-        .update({
-            invoiceNumber: formattedNumber
-        })
-        .catch(err => console.error(err));
-
-    await firestore
-        .doc('configuration/invoice_2020')
-        .update({
-            number: (parseInt(invoiceNumber, 10) + 1).toString()
-        })
-        .catch(err => console.error(err));
-
-    return Promise.resolve(formattedNumber);
-}*/
-export function onDocumentChange(before: DocumentData, after: DocumentData, id: string) {
+export async function onDocumentChange(
+    firestore: FirebaseFirestore.Firestore,
+    before: DocumentData,
+    after: DocumentData,
+    id: string,
+    settings
+) {
     const status = after.status;
-    let update: { status?: { [key: string]: string }; invoiceUrl?: string; devisUrl?: string; conventionUrl?: string } = {};
-    if (before.status.validated !== after.status.validated && after.status.validated === 'done') {
-        update = partnershipValidated(after, id);
-    } else if (before.status.sign !== after.status.sign && after.status.sign === 'done') {
-        update = {
-            status: {
-                ...status,
-                paid: 'pending'
-            }
-        };
-    } else if (before.status.paid !== after.status.paid && after.status.paid === 'done') {
-        // TODO call pour generer la facture et set l'invoiceURL
+    if (before.status.validated !== status.validated && status.validated === StatusEnum.DONE) {
+        await generateInvoiceNumber(firestore, id);
 
-        const emailTemplate = PaymentReceivedFactory(after, `${functions.config().hosting.baseurl}/partner/${id}`);
+        await generateAndStoreProformaInvoiceAndConvention(firestore, after, id, settings);
+
+        return firestore.doc('companies/' + id).update({
+            ...partnershipValidated(after, id, settings)
+        });
+    } else if (before.status.sign !== status.sign && status.sign === StatusEnum.DONE) {
+        return firestore.doc('companies/' + id).update({
+            status: {
+                ...status,
+                paid: StatusEnum.PENDING
+            }
+        });
+    } else if (before.status.paid !== status.paid && status.paid === StatusEnum.DONE) {
+        await generateAndStoreInvoice(firestore, after, id, settings);
+
+        const emailTemplate = PaymentReceivedFactory(after, `${settings.hosting.baseurl}/partner/${id}`);
         sendEmailToAllContacts(after, emailTemplate).catch(err => console.error(err));
-        update = {
+        return firestore.doc('companies/' + id).update({
             status: {
                 ...status,
-                received: 'pending',
-                code: 'pending'
+                received: StatusEnum.PENDING,
+                code: StatusEnum.PENDING
             }
-            //invoiceUrl: 'https://google.fr'
-        };
-    } else if (after.status.received === 'pending' && after.twitter && after.facebook && after.linkedin !== '') {
-        update = {
+        });
+    } else if (status.received === StatusEnum.PENDING && after.twitter && after.facebook && after.linkedin !== '') {
+        return firestore.doc('companies/' + id).update({
             status: {
                 ...status,
-                received: 'done'
+                received: StatusEnum.DONE,
+                communicated: StatusEnum.PENDING
             }
-        };
-    } else if (after.status.code === 'pending') {
-        const undone = Object.values(after.codes).filter(code => !code);
-        if (undone.length === 0) {
-            update = {
+        });
+    } else if (status.code === StatusEnum.PENDING) {
+        const codes = after.codes || {};
+        const undone = Object.values(codes).filter(code => !code);
+        if (Object.keys(codes).length > 0 && undone.length === 0) {
+            return firestore.doc('companies/' + id).update({
                 status: {
                     ...status,
-                    code: 'done'
+                    code: StatusEnum.DONE
                 }
-            };
+            });
         }
     }
 
-    if (status.communicated !== 'pending' && status.communicated !== 'done' && update.status && update.status.received === 'done') {
-        // si l'image et le message sont à done, mettre communicated a pending
-
-        update = {
-            status: {
-                ...update.status,
-                communicated: 'pending'
-            }
-        };
-    }
-    return update;
+    return Promise.resolve();
 }

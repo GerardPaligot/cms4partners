@@ -2,13 +2,14 @@ import { AdminSocialComponent } from './social.component';
 import { PartnerService } from '../../../partner.service';
 import { FilesComponent } from 'src/app/common/files/files.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { UploadComponent } from 'src/app/common/upload/upload.component';
 
 export default {
     title: 'Admin / Social'
 };
 
 const moduleMetadata = {
-    declarations: [AdminSocialComponent, FilesComponent],
+    declarations: [AdminSocialComponent, FilesComponent, UploadComponent],
     imports: [MaterialModule],
     providers: [
         {
