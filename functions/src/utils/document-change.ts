@@ -44,7 +44,7 @@ export async function onDocumentChange(
                 code: StatusEnum.PENDING
             }
         });
-    } else if (status.received === StatusEnum.PENDING && after.twitter && after.facebook && after.linkedin !== '') {
+    } else if (status.received === StatusEnum.PENDING && after.twitter && after.linkedin !== '') {
         return firestore.doc('companies/' + id).update({
             status: {
                 ...status,
