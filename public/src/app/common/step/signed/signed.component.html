@@ -1,9 +1,9 @@
-<p *ngIf="company.status.sign === 'done'">
+<p *ngIf="company.conventionSignedUrl">
     Vous trouverez ci-dessous la convention et le devis relatifs à notre partenariat.
     <app-files [files]="files"></app-files>
 </p>
 
-<ng-container *ngIf="company.status.sign === 'pending'">
+<ng-container *ngIf="!company.conventionSignedUrl">
     <p>
         Vous pouvez transférer ci-dessous la convention signée:
     </p>
