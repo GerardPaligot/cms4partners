@@ -1,7 +1,13 @@
+<p> Vous pouvez uploader le logo de votre société aux formats png ou svg. Il sera utilisé par l'èquipe du Devfest Lille pour créer le flyer qui sera publier sur les réseaux sociaux. </p>
 <div class="inline-bloc">
     <app-upload (uploadFile)="upload($event)" [isEnable]="" accept=".png,.svg" label="Logo (*.png, *.svg)"></app-upload>
 </div>
 
+<app-files [files]="files"></app-files>
+
+<mat-divider></mat-divider>
+
+<p>Vous pouvez également nous indiquer le message que vous souhaitez voir publier sur les réseaux sociaux. </p>
 <mat-form-field class="full-width">
     <textarea [(ngModel)]="company.twitter" matInput placeholder="Message Twitter" maxlength="280"></textarea>
 </mat-form-field>
@@ -10,6 +16,5 @@
     <textarea [(ngModel)]="company.linkedin" matInput placeholder="Message LinkedIN"></textarea>
 </mat-form-field>
 
-<app-files [files]="files"></app-files>
 
 <button color="primary" mat-button (click)="update()">Sauvegarder</button>

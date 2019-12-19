@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
     declarations: [],
@@ -30,10 +31,12 @@ import { MatChipsModule } from '@angular/material/chips';
         MatRadioModule,
         MatTableModule,
         MatChipsModule,
+        MatDividerModule,
         CommonModule
     ],
     exports: [
         MatIconModule,
+        MatDividerModule,
         MatTabsModule,
         MatTableModule,
         MatButtonModule,

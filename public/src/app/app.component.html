@@ -12,7 +12,7 @@
         <button *ngIf="!isLoggedIn" (click)="login()" mat-button>
             Log in
         </button>
-        <button *ngIf="isLoggedIn" (click)="logout()" mat-button>
+        <button id="logout" *ngIf="isLoggedIn" (click)="logout()" mat-button>
             Log out
         </button>
     </mat-toolbar-row>

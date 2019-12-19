@@ -56,7 +56,7 @@ function generateFile(config, fileName, fileFr, fileEn, settings) {
         };
         try {
             console.log('Generator:', 'generate ' + fileName);
-            const str = ejs.render(config.lang === 'fr' ? fileFr : fileEn, data);
+            const str = ejs.render(fileFr, data);
             markdownToPDf()
                 .from.string(str)
                 .to(os.tmpdir() + '/' + fileName, err => {
