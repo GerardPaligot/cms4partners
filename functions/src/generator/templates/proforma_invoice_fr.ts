@@ -54,8 +54,6 @@ export default `
 </tbody>
 <table>
 
-<br />
-
 Facture arrêtée à la somme de <%= SPONSORING_TEXT %> (<%= SPONSORING_NUMBER %>).
 TVA non applicable, article 261 du Code général des impôts.
 
