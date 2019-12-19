@@ -50,8 +50,6 @@ export default `
 </tbody>
 <table>
 
-<br />
-
 The level of this invoice is set to <%= SPONSORING_TEXT %> (<%= SPONSORING_NUMBER %>).
 VAT non applicable, under Article 261 of the General Tax Code.
 
