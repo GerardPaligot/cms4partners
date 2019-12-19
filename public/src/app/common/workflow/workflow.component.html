@@ -1,4 +1,4 @@
-<mat-accordion *ngIf="workflow">
+<mat-accordion *ngIf="workflow" multi>
     <mat-expansion-panel
         *ngFor="let step of workflow.steps"
         [disabled]="step.state !== 'done' && step.state !== 'pending'"

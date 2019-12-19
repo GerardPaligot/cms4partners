@@ -7,7 +7,7 @@
             >
         </mat-form-field>
         <mat-form-field class="full-width">
-            <input matInput placeholder="Emails des contacts (séparés par des ',')" type="text" formControlName="email" />
+            <input matInput placeholder="Emails des contacts (séparés par des virgules)" type="text" formControlName="email" />
             <mat-error *ngIf="companyProfile.controls.email.errors && companyProfile.controls.email.errors.required"
                 >Vous devez absolument définir au moins un email</mat-error
             >
@@ -73,26 +73,16 @@
             >
         </mat-form-field>
         <mat-form-field class="full-width">
-            <mat-label>Partenariat de second choix</mat-label>
+            <mat-label>Partenariat de second choix (si votre premier choix n'est plus disponible)</mat-label>
             <select matNativeControl formControlName="secondSponsoring">
-                <option>Gold</option>
-                <option>Silver</option>
-                <option>Bronze</option>
+                <option value="">Je ne suis pas intéressé</option>
+                <option *ngIf="companyProfile.controls.sponsoring.value !== 'Gold'">Gold</option>
+                <option *ngIf="companyProfile.controls.sponsoring.value !== 'Silver'">Silver</option>
+                <option *ngIf="companyProfile.controls.sponsoring.value !== 'Bronze'">Bronze</option>
             </select>
         </mat-form-field>
 
-        <mat-form-field class="full-width">
-            <mat-label>Langue préférée</mat-label>
-            <select matNativeControl formControlName="lang">
-                <option value="fr">Française</option>
-                <option value="en">Anglaise</option>
-            </select>
-            <mat-error *ngIf="companyProfile.controls.lang.errors && companyProfile.controls.lang.errors.required"
-                >La langue est obligatoire</mat-error
-            >
-        </mat-form-field>
-
-        <button type="submit" [disabled]="!companyProfile.valid" mat-button color="primary">
+        <button type="submit" [disabled]="!companyProfile.valid" mat-raised-button color="primary">
             Submit <span *ngIf="submitted">✅</span>
         </button>
     </form>

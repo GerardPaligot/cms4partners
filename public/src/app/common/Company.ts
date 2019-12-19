@@ -13,7 +13,6 @@ export interface Company {
     role: string;
     sponsoring: string;
     secondSponsoring?: string;
-    lang: string;
     status?: WorkflowStatus;
     devisUrl: string;
     conventionUrl: string;

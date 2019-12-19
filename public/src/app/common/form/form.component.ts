@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, Renderer2, Inject } from '@angular/core';
+
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { Company } from '../Company';
 import { Observable, of } from 'rxjs';
@@ -25,7 +26,6 @@ export class FormComponent implements OnInit {
         role: '',
         sponsoring: '',
         secondSponsoring: '',
-        lang: '',
         status: {},
         devisUrl: '',
         conventionUrl: '',
@@ -41,6 +41,7 @@ export class FormComponent implements OnInit {
     public submitEvent = new EventEmitter<Company>();
 
     submitted = false;
+
     ngOnInit() {
         this.initFormGroup(this.defaultCompany);
 
@@ -61,11 +62,11 @@ export class FormComponent implements OnInit {
             email: new FormControl({ value: company.email, disabled: this.readOnly }, [Validators.required, Emails()]),
             role: new FormControl({ value: company.role, disabled: this.readOnly }, [Validators.required]),
             sponsoring: new FormControl({ value: company.sponsoring, disabled: this.readOnly }, [Validators.required]),
-            secondSponsoring: new FormControl({ value: company.secondSponsoring, disabled: this.readOnly }),
-            lang: new FormControl({ value: company.lang, disabled: this.readOnly }, [Validators.required])
+            secondSponsoring: new FormControl({ value: company.secondSponsoring, disabled: this.readOnly })
         });
     }
     onSubmitForm() {
+        window.scrollTo(0, 0);
         this.submitEvent.emit(this.companyProfile.value);
         this.submitted = true;
     }
