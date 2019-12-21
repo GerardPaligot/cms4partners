@@ -82,8 +82,8 @@
             </select>
         </mat-form-field>
 
-        <button type="submit" [disabled]="!companyProfile.valid" mat-raised-button color="primary">
-            Submit <span *ngIf="submitted">✅</span>
+        <button type="submit" [disabled]="!companyProfile.valid || submitted" mat-raised-button color="primary">
+            Submit
         </button>
     </form>
 </mat-card>
