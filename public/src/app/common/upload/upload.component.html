@@ -6,5 +6,6 @@
     <mat-form-field class="ab-input">
         <input matInput [placeholder]="label" disabled [value]="fileName" />
     </mat-form-field>
-    <button color="primary" mat-button (click)="upload()">Uploader</button>
+    <button *ngIf="!uploading" color="primary" mat-button (click)="upload()">Uploader</button>
+    <mat-spinner *ngIf="uploading" diameter="20"></mat-spinner>
 </div>

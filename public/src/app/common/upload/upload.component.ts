@@ -13,6 +13,8 @@ export class UploadComponent {
 
     @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
 
+    uploading = false;
+
     public id = Math.random()
         .toString(36)
         .substring(2);
@@ -24,6 +26,7 @@ export class UploadComponent {
     }
 
     upload() {
+        this.uploading = true;
         const files = this.fileInput.nativeElement.files;
         this.uploadFile.emit(files[0]);
     }

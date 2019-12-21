@@ -13,7 +13,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [],
@@ -32,7 +33,8 @@ import {MatDividerModule} from '@angular/material/divider';
         MatTableModule,
         MatChipsModule,
         MatDividerModule,
-        CommonModule
+        CommonModule,
+        MatProgressSpinnerModule
     ],
     exports: [
         MatIconModule,
@@ -49,7 +51,8 @@ import {MatDividerModule} from '@angular/material/divider';
         MatListModule,
         MatRadioModule,
         MatToolbarModule,
-        CommonModule
+        CommonModule,
+        MatProgressSpinnerModule
     ]
 })
 export class MaterialModule {}

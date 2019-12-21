@@ -67,7 +67,7 @@ export class FormComponent implements OnInit {
     }
     onSubmitForm() {
         window.scrollTo(0, 0);
-        this.submitEvent.emit(this.companyProfile.value);
         this.submitted = true;
+        this.submitEvent.emit(this.companyProfile.value);
     }
 }
