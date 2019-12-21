@@ -15,9 +15,9 @@ enum SortBy {
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-    displayedColumns: string[] = ['name', 'sponsoring', 'action'];
-    partners: Company[];
-    originalPartners: Company[];
+    displayedColumns: string[] = ['name', 'sponsoring', 'pending', 'action'];
+    partners: Partial<Company>[];
+    originalPartners: Partial<Company>[];
 
     numberOther = 0;
     numberESN = 0;
@@ -27,7 +27,14 @@ export class DashboardComponent {
 
     constructor(private partnerService: PartnerService) {
         this.partnerService.getAll().subscribe(partners => {
-            this.originalPartners = partners;
+            this.originalPartners = partners.map(p => ({
+                id: p.id,
+                name: p.name,
+                sponsoring: p.sponsoring,
+                pending: Object.keys(p.status)
+                    .filter(key => p.status[key] === 'pending')
+                    .join(',')
+            }));
 
             partners.forEach(partner => {
                 if (partner.type === 'esn') {
