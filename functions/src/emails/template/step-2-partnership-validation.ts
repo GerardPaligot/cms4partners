@@ -5,9 +5,9 @@ Bonjour
 <br><br>
 Bonne nouvelle ! Votre demande de pack ${sponsoring} pour le Devfest Lille 2020 a été validé.
 <br><br>
-Vous trouverez ci joint la convention pour ce partenariat à nous retourner signée ainsi que la facture proforma à acquitter. 
+Vous trouverez la convention pour ce partenariat à nous retourner signée ainsi que la facture proforma à acquitter sur votre espace dédié ${address_cms4devfest}. 
 <br><br>
-Vous pouvez nous faire parvenir la convention soit en retour de ce mail, soit en la transférant sur le site cms4devfest : ${address_cms4devfest}.
+Vous pouvez nous faire parvenir la convention soit en retour de ce mail, soit en la transférant sur votre espace dédié.
 <br><br>
 Ce pack ${sponsoring} vous est reservé jusqu'au ${sponsor_reservation_end_date}.
 <br><br>
