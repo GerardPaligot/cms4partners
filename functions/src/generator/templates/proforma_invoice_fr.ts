@@ -3,7 +3,7 @@ export default `
 
 <div  style="text-align: right"><b>Date : <%= DATE %></b></div>
 
-<div  style="text-align: right"><b>Facture d'accompte</b></div>
+<div  style="text-align: right"><b>FACTURE PRO FORMA</b></div>
 
 <% if (PO) { %>
 <div  style="text-align: right"><b>PO : <%= PO %></b></div>
