@@ -33,7 +33,7 @@
         "zone.js": "0.10.2"
     },
     "devDependencies": {
-        "@angular-builders/jest": "8.2.0",
+        "@angular-builders/jest": "8.3.2",
         "@angular-devkit/build-angular": "0.803.16",
         "@angular/cli": "8.3.16",
         "@angular/compiler-cli": "8.2.13",
@@ -49,7 +49,7 @@
         "@types/jest": "24.0.21",
         "@types/node": "8.10.56",
         "babel-loader": "^8.0.6",
-        "codelyzer": "5.2.0",
+        "codelyzer": "5.2.1",
         "husky": "3.1.0",
         "jasmine-core": "3.5.0",
         "jasmine-spec-reporter": "4.2.1",
