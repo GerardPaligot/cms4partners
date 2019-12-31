@@ -21,7 +21,7 @@ export class AdminValidatedComponent implements OnInit {
     ngOnInit() {
         this.files = {
             Convention: this.company.conventionUrl,
-            Devis: this.company.devisUrl
+            'Facture Proforma': this.company.devisUrl
         };
         this.choice = this.company.sponsoring;
     }
