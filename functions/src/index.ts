@@ -74,3 +74,42 @@ exports.updateConventionSignedUrlProperty = functions.storage.object().onFinaliz
             });
         });
 });
+
+exports.scheduledFunctionCrontab = functions.pubsub
+    .schedule('0 9 * * *')
+    .timeZone('Europe/Paris')
+    .onRun(context => {
+        const today = new Date();
+        const date = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today
+            .getDate()
+            .toString()
+            .padStart(2, '0')}`;
+
+        return firestore
+            .collection('companies')
+            .where('publicationDate', '==', date)
+            .get()
+            .then(snapshot => {
+                if (snapshot.empty) {
+                    console.error('No matching documents.');
+                    return;
+                }
+
+                snapshot.forEach(doc => {
+                    const company = doc.data();
+                    if (company.linkedin) {
+                        console.log(`Posting linkedin message for ${company.name}`);
+                        // TODO
+                    }
+                    if (company.twitter) {
+                        console.log(`Posting twitter message for ${company.name}`);
+
+                        // TODO
+                    }
+                });
+            })
+            .catch(err => {
+                console.error('Error getting documents', err);
+            });
+        return null;
+    });
