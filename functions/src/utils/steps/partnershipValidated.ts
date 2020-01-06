@@ -6,7 +6,7 @@ import { addDays } from 'date-fns';
 import { StatusEnum } from '../document-change';
 export default (company: DocumentData, id: string, settings) => {
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const date = addDays((company.creationDate as Timestamp).toDate(), 30);
+    const date = addDays((company.creationDate as Timestamp).toDate(), 15);
     const dateTimeFormat = new Intl.DateTimeFormat('fr-FR', options);
     sendEmailToAllContacts(
         company,
