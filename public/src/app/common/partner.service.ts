@@ -15,7 +15,8 @@ export class PartnerService {
     }
 
     public add(company: Company) {
-        const emails = Array.isArray(company.email) ? company.email : company.email.split(',');
+        const emails = Array.isArray(company.email) ? company.email : company.email.split(',').map(e => e.trim());
+
         return this.companiesCollectionRef.add({
             ...company,
             status: {},
