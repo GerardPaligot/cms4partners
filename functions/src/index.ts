@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import { sendEmail } from './utils/mail';
 import { onDocumentChange } from './utils/document-change';
+import { getMe, postLinkedinMessageWithImage } from './socials/linkedin';
 
 admin.initializeApp();
 const firestore = admin.firestore();
@@ -76,4 +77,14 @@ exports.updateConventionSignedUrlProperty = functions.storage.object().onFinaliz
                 conventionSignedUrl: url
             });
         });
+});
+
+// Linkedin
+
+exports.postLinkedinMessageWithImage = functions.https.onRequest((req, res) => {
+    postLinkedinMessageWithImage();
+});
+
+exports.linkedinGetMe = functions.https.onRequest((req, res) => {
+    getMe();
 });
