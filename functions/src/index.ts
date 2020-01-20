@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import { sendEmail } from './utils/mail';
 import { onDocumentChange } from './utils/document-change';
 import { getMe, postLinkedinMessageWithImage } from './socials/linkedin';
+import { getTweets } from './socials/twitter';
 
 admin.initializeApp();
 const firestore = admin.firestore();
@@ -87,4 +88,13 @@ exports.postLinkedinMessageWithImage = functions.https.onRequest((req, res) => {
 
 exports.linkedinGetMe = functions.https.onRequest((req, res) => {
     getMe();
+});
+
+// Twitter
+
+exports.twitterGetTweets = functions.https.onRequest((req, res) => {
+    getTweets().then(tweets => {
+        console.log(tweets);
+        res.send(tweets);
+    })
 });
