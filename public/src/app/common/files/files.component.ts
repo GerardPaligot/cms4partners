@@ -2,22 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-files',
-<<<<<<< Updated upstream
-    template: `
-        <mat-list role="list" *ngIf="hasFile">
-            <h3 mat-subheader>Fichiers associés</h3>
-            <ng-container *ngFor="let item of files | keyvalue">
-                <mat-list-item role="listitem" *ngIf="item.value">
-                    <mat-icon mat-list-icon>folder</mat-icon>
-                    <a target="_blank" rel="noreferrer" rel="noopener" [href]="item.value">{{ item.key }}</a></mat-list-item
-                >
-            </ng-container>
-        </mat-list>
-    `
-=======
     templateUrl: 'files.component.html',
     styleUrls: ['files.component.scss']
->>>>>>> Stashed changes
 })
 export class FilesComponent implements OnInit {
     @Input()
