@@ -1,7 +1,6 @@
 const functions = require('firebase-functions');
 const axios = require('axios');
 const request = require('request');
-
 const fs = require('fs');
 const querystring = require('querystring');
 const FormData = require('form-data');
@@ -42,13 +41,14 @@ async function postLinkedinMessageWithImage() {
 async function uploadFile(uploadFileUrl: string, imageUrl: string) {
     const form = new FormData();
 
-    //
-    form.append('files', request(imageUrl));
+    // form.append('upload-file', image);
 
     const config = {
         headers: {
             ...form.getHeaders(),
-            Authorization: `Bearer ${accessToken}`
+            Authorization: `Bearer ${accessToken}`,
+            Accept: '*/*',
+            'Content-Type': 'multipart/form-data'
         }
     };
 
@@ -57,18 +57,39 @@ async function uploadFile(uploadFileUrl: string, imageUrl: string) {
     console.log(config);
     console.log('_______________');
 
-    return await axios
-        .post(uploadFileUrl, form, config)
-        .then((resp: any) => {
-            console.log('🐧🐧🐧🐧🐧🐧🐧');
-            console.log(resp);
-            console.log('🐧🐧🐧🐧🐧🐧🐧');
-        })
-        .catch((error: any) => {
+    // curl -i --upload-file twitter.jpg -H 'Authorization: Bearer .......' "....."
+
+    // return await axios
+    //     .put(uploadFileUrl, form, config)
+    //     .then((resp: any) => {
+    //         console.log('🐧🐧🐧🐧🐧🐧🐧');
+    //         console.log(resp);
+    //         console.log('🐧🐧🐧🐧🐧🐧🐧');
+    //     })
+    //     .catch((error: any) => {
+    //         console.log('👷‍♂️👷‍♂️👷‍♂️👷‍♂️👷‍♂️');
+    //         console.log(error.toJSON());
+    //         console.log('👷‍♂️👷‍♂️👷‍♂️👷‍♂️👷‍♂️');
+    //     });
+
+    const file = await request(imageUrl).pipe(fs.createWriteStream('./test.jpg'));
+    const formData = {
+        'upload-file': file,
+    };
+    request.post(
+        {
+            url: uploadFileUrl,
+            formData: formData
+        },
+        (err: any, httpResponse: any, body: any) => {
             console.log('👷‍♂️👷‍♂️👷‍♂️👷‍♂️👷‍♂️');
-            console.log(error.toJSON());
+            if (err) {
+                return console.error('upload failed:', err);
+            }
+            console.log('Upload successful!  Server responded with:', body);
             console.log('👷‍♂️👷‍♂️👷‍♂️👷‍♂️👷‍♂️');
-        });
+        }
+    );
 }
 
 /**
@@ -110,13 +131,13 @@ async function registerUpload() {
         });
 }
 
-// async function getImage(url: string) {
-//     return await axios
-//         .get(url, {
-//             responseType: 'arraybuffer'
-//         })
-//         .then((response: any) => Buffer.from(response.data, 'binary'));
-// }
+async function getImage(url: string) {
+    return await axios
+        .get(url, {
+            responseType: 'arraybuffer'
+        })
+        .then((response: any) => Buffer.from(response.data, 'binary'));
+}
 
 function getMe() {
     const url = `${baseUrl}/me`;
@@ -213,4 +234,13 @@ function getAccessTokenFromCode(code: string) {
         });
 }
 
-export { registerUpload, getMe, getAccessTokenFromCode, getAuthCodeUrl, getAuthCode, postLinkedinMessageWithImage, postLinkedinMessage };
+export {
+    registerUpload,
+    getMe,
+    getAccessTokenFromCode,
+    getAuthCodeUrl,
+    getAuthCode,
+    postLinkedinMessageWithImage,
+    postLinkedinMessage,
+    getImage
+};
