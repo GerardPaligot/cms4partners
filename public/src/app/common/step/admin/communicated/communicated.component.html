@@ -6,7 +6,7 @@
 <br />
 
 <div class="inline-bloc">
-    <app-upload (uploadFile)="uploadFlyer($event)" [isEnable]="" accept=".png,.svg" label="Flyer (*.svg,*.png)s"></app-upload>
+    <app-upload (uploadFile)="uploadFlyer($event)" [isEnable]="" accept=".png,.svg,.jpg,.jpeg" label="Flyer (*.svg,*.png)s"></app-upload>
 </div>
 
 <app-files *ngIf="company.flyerUrl" [files]="files"></app-files>
