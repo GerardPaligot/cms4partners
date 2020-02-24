@@ -5,6 +5,7 @@
 <ng-container *ngIf="!isLoading">
     <h2>{{ partner.name }} - Suivi du Partenariat</h2>
     <p><a [routerLink]="['/partner', partner.id]">Page dédié pour le partenaire</a></p>
+    <p><a href="https://devfest.gdglille.org/code-conduite.html" rel="noreferrer noopener" target="_blank">Code de conduite</a></p>
     <p>Espace partenaire: Tout ce que vous avez besoin dans <strong>un même outils</strong> 👌</p>
 
     <mat-tab-group *ngIf="!isLoading">
