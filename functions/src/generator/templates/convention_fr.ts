@@ -28,8 +28,9 @@ D’une manière générale, l'association s’engage à donner une forte visibi
 <% if (SPONSORING === 'Gold') { %>- Logo sur les vidéos publiées sur Youtube<% } %>
 <% if (SPONSORING === 'Gold') { %>- Stand (9m²) le jour de la conférence<% } %>
 <% if (SPONSORING === 'Silver') { %>- Stand (6m²) le jour de la conférence<% } %>
-
-<% if (SPONSORING !== 'Silver') { %>
+<% if (SIRET === '81857287700020') { %>- Table (1m2) le jour de la conférence<% } %>
+<% if (SIRET === '81857287700020') { %>- Possibilité d'avoir 1m2 supplémentaire pour faire des interviews et/ou un job board.<% } %>
+<% if (SPONSORING !== 'Bronze' || SIRET === '81857287700020') { %>
 L'association s'engage à fournir une multiprise, une table et deux chaises pour le stand. Le reste du matériel sera à la charge du partenaire. 
 <% } %>
 
@@ -42,8 +43,14 @@ Comme indiqué sur le devis, vous trouverez ci-dessous les informations bancaire
 - IBAN FR7630027170150002067180121
 - BIC CMCIFRPP
 
-<% if (SPONSORING !== 'Bronze') { %>
+<% if (SPONSORING !== 'Bronze' || SIRET === '81857287700020' ) { %>
 Le partenaire s'engage à installer son stand le jeudi 11 juin après-midi. Une équipe de sécurité sera présente dans la nuit du 11 au 12 juin pour surveiller la zone d'expositions. 
+<% } %>
+
+<% if (SIRET === '81857287700020') { %>
+Il s'engage également à :
+- Diffuser les annonces des partenaires du DevFest sur WeLoveDevs.com
+- Mettre en avant les partenaires du DevFest sur WeLoveDevs.com au travers d'un espace réservé au DevFest
 <% } %>
 
 **DUREE DE LA CONVENTION**
